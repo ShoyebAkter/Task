@@ -24,6 +24,7 @@ export default class Product extends Component {
                     <Cloth
                     key={index}
                     cloth={cloth}
+                    dispatch={this.props.dispatch}
                     />
                 )
             })

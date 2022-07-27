@@ -18,7 +18,7 @@ export default class Header extends Component {
                     <button class="dropbtn">Cart
                     </button>
                     <div class="dropdown-content">
-                        <Cart/>
+                        <Cart getdata={this.props.getdata}/>
                     </div>
                 </div>
             </div>

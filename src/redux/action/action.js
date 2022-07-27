@@ -10,3 +10,10 @@ export const DLT=(id)=>{
         payload:id
     }
 }
+
+export const REMOVE = (iteam) => {
+    return {
+        type: "RMV_ONE",
+        payload: iteam
+    }
+}
