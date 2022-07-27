@@ -1,0 +1,15 @@
+.header{
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: space-around;
+
+}
+.leftside,.rightside{
+    display: flex;
+}
+.leftside div{
+    padding: 5px;
+}
+.rightside div{
+    padding: 5px;
+}
