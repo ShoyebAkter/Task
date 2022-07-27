@@ -7,26 +7,36 @@ import { useQuery, gql } from "@apollo/client";
 const PRODUCTS_QUERY = gql`
 query{
     
-    category(input: { title: "clothes" }) {
-      name
-      products {
+  category(input: { title: "clothes" }) {
+    name
+    products {
+      id,
+      name,
+      inStock,
+      description,
+      category,
+      brand,
+      gallery,
+      prices{
+        currency{
+          label,
+          symbol
+        },
+        amount
+      },
+      attributes{
         id,
         name,
-        inStock,
-        description,
-        category,
-        brand,
-        gallery,
-        prices{
-          currency{
-            label,
-            symbol
-          },
-          amount
+        type,
+        items{
+          displayValue,
+          value,
+          id
         }
       }
     }
   }
+}
     
 `;
 

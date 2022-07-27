@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
+import Cart from '../Cart/Cart'
 import './Header.css'
 
 export default class Header extends Component {
-  render() {
-    return (
-      <div className='header'>
-        <div className='leftside'>
-            <div>Women</div>
-            <div>Men</div>
-            <div>Kids</div>
-        </div>
-        <div className='middle'>
-            <div>Button</div>
-        </div>
-        <div className='rightside'>
-            <div>Currency</div>
-            <div>Cart</div>
-        </div>
-      </div>
-    )
-  }
+    render() {
+        return (
+            <div class="topnav" id="myTopnav">
+                <div>
+                <a href="#home" class="active">Home</a>
+                <a href="#news">News</a>
+                <a href="#contact">Contact</a>
+                </div>
+                {/* <div>
+                    Button
+                </div> */}
+                <div class="dropdown">
+                    <button class="dropbtn">Cart
+                    </button>
+                    <div class="dropdown-content">
+                        <Cart/>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
