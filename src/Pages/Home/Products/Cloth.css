@@ -1,0 +1,11 @@
+.product{
+    height: 400px;
+    width: 400px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px solid rgb(24, 23, 23);
+}
+
+img{
+    height: 250px;
+    width: 380px;
+}
