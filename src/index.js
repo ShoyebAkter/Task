@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
@@ -21,11 +22,13 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
-    </React.StrictMode>
+    <BrowserRouter>
+      <React.StrictMode>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </React.StrictMode>
+    </BrowserRouter>
   </Provider>
 );
 

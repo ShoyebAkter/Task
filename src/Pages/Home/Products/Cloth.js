@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { ADD } from '../../../redux/action/action'
 import './Cloth.css'
+import { NavLink } from 'react-router-dom';
 
 export default class Cloth extends Component {
     constructor(props){
@@ -20,7 +21,11 @@ export default class Cloth extends Component {
   {
     return (
       <div className='product'>
-        <div ><img src={this.state.cloth.gallery[2]} alt=""></img></div>
+        <div >
+          <NavLink to={`/cloth/:id`}>
+          <img src={this.state.cloth.gallery[2]} alt=""></img>
+          </NavLink>
+          </div>
         <div>{this.state.cloth.name}</div>
         <div>{this.state.cloth.brand}</div>
         {this.state.cloth.description}

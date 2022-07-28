@@ -11,6 +11,7 @@ export default class Product extends Component {
         this.state={
             clothes: this.props.data.category.products
         }
+        console.log(this.state.clothes)
     }
   render()
   {
