@@ -30,6 +30,7 @@ export default class Currencies extends Component {
         })
             .then(res => res.json())
             .then(result => {
+                console.log(result)
                 this.setState({currencies: result.data.currencies})
             console.log(this.state.currencies)
             })

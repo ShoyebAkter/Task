@@ -4,13 +4,50 @@ import Currencies from '../currency/Currencies'
 import './Header.css'
 
 export default class Header extends Component {
+
+    state={
+        categories: []
+    }
+    componentDidMount(){
+        this.fetchCategories()
+    }
+
+    fetchCategories(){
+        const CATEGORY_QUERY={
+            query: `
+            query{
+                categories{
+                  name
+                }
+            }
+            `
+        }
+        fetch('http://localhost:4000/', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(CATEGORY_QUERY)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+            const categoryArray=[];
+                categoryArray.push(result.data.categories)
+            // console.log(categoryArray)
+            this.setState({categories:result.data.categories})
+            console.log(this.state.categories)
+            })
+    }
     render() {
         return (
             <div class="topnav" id="myTopnav">
                 <div>
-                <a href="#home" class="active">Home</a>
-                <a href="#news">News</a>
-                <a href="#contact">Contact</a>
+                {
+                    this.state.categories.map(category=>{
+                        return(
+                            <div>{category.name}</div>
+                        )
+                    })
+                }
                 </div>
                 {/* <div>
                     Button
