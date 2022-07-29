@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 
 export default class Cart extends Component {
     constructor(props){
@@ -25,10 +26,12 @@ export default class Cart extends Component {
                                 )
                             })
                             }</div>
+                            
                         </div>
                     )
                 }))
             }
+            <NavLink to={`/cart`}>View Bag</NavLink>
         </div>
         :
         <div>Cart is empty</div>

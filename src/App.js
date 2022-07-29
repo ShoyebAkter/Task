@@ -8,6 +8,7 @@ import { Routes,Route, useNavigate, useParams } from 'react-router-dom';
 import Product from './Pages/Home/Products/Product';
 import ClothDetails from './Pages/Home/Products/ClothDetails';
 import { PRODUCTS_QUERY, SINGLEPRODUCT_QUERY } from './Pages/queries/queries';
+import CartDetails from './Pages/Cart/CartDetails';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
     getdata={getdata}
     />} />
      <Route path='/cloth/:id' element={<ClothDetails singleData={singleData} />} />
+     <Route path='/cart' element={<CartDetails getdata={getdata}/>}/>
    </Routes>
     </>
   );

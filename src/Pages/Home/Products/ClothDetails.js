@@ -1,7 +1,7 @@
+import { gql } from '@apollo/client';
 import React, { Component } from 'react';
-
-const SINGLEPRODUCT_QUERY=`
-  
+import {Query} from 'react-apollo'
+const PRODUCT_QUERY=gql`
 query{
   product(id:"huarache-x-stussy-le"){
   id,
@@ -32,42 +32,28 @@ query{
 }
 `
 
+
 export default class ClothDetails extends Component {
-    constructor(){
-        super()
-        // console.log(props)
-        this.state={
-            productData: []
-        }
-
-        console.log(this.state.productData.name)
-
-    }
-
-    componentDidMount(){
-      fetch('http://localhost:4000/',{
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ query: SINGLEPRODUCT_QUERY})
-        })
-        .then(res=>res.json())
-        .then(result=>{
-          const product=result.data.product;
-          console.log(product)
-          this.setState({productData: product})
-        })
-        
-    }
+  state={
+    productData: [{name:"foo"}]
+  };
+  constructor(props){
+    super(props);
+    
+    console.log(typeof(this.state.productData))
+  }
 
   render() 
   
   {
     return (
       <div> 
-        <div>ClothDetails</div>
-        <div>{this.state.productData.name}</div>
-        <div>{this.state.productData.id}</div>
-        <div>{this.state.productData.prices}</div>
+        <div>Pic</div>
+        <div>Name</div>
+        <div>Size</div>
+        <div>Price</div>
+        <div>Button</div>
+        <div>Description</div>
       </div>
       
     )
