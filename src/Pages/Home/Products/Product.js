@@ -9,44 +9,45 @@ import {withParams} from '../../customhook/HOC'
 
   state={
     category: [],
-    categoryName: ""
+    categoryName: "all"
   }
 
     componentDidMount(){
       this.fetchCategory()
-      // console.log(this.props)
-      // console.log(this.props.match.params)
+      console.log(this.props)
+      // console.log(this.props.params.nameId)
       
     }
 
     fetchCategory(){
-      
-      const CATEGORY_QUERY={
-        query:`
+      const title="all";
+      const CATEGORY_QUERY=
+         `       
         query {
-          category(input: {title: "clothes"}){
+          category(input: {title: "all"}){
+          name,
+          products{
+            id,
             name,
-            products{
-              id,
-              name,
-              inStock,
-              description,
-              category,
-              brand,
-              gallery,
-              prices{
-                currency{
-                  label,
-                  symbol
-                },
-                amount
-              }
+            inStock,
+            description,
+            category,
+            brand,
+            gallery,
+            prices{
+              currency{
+                label,
+                symbol
+              },
+              amount
             }
           }
+        }
       }
         `
-      }
+      
 
+      
       fetch('http://localhost:4000/',{
         method: "POST",
         headers: {"Content-Type" : "application/json"},
@@ -55,10 +56,11 @@ import {withParams} from '../../customhook/HOC'
       .then(res=>res.json())
       .then(result=>
         {
-          // console.log(result)
-          this.setState({category: result.data.category.products})
-          this.setState({categoryName: this.props.params.nameId})
-          console.log(this.state.categoryName)
+          
+          // this.setState({category: result.data.category.products})
+          // this.setState({categoryName: this.props.params.nameId})
+          console.log(result)
+          // console.log(this.state.categoryName)
         })
     }
   render()
