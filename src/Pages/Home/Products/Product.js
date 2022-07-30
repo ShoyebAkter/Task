@@ -14,17 +14,16 @@ import {withParams} from '../../customhook/HOC'
 
     componentDidMount(){
       this.fetchCategory()
-      console.log(this.props)
+      // console.log(this.props)
       // console.log(this.props.params.nameId)
       
     }
 
-    fetchCategory(){
-      const title="all";
-      const CATEGORY_QUERY=
-         `       
-        query {
-          category(input: {title: "all"}){
+    async fetchCategory(){
+      const name="all";
+      const CATEGORY_QUERY= `       
+        query getcategory($title: String!){
+          category(input: {title: $title}){
           name,
           products{
             id,
@@ -45,15 +44,14 @@ import {withParams} from '../../customhook/HOC'
         }
       }
         `
-      
 
       
       fetch('http://localhost:4000/',{
         method: "POST",
         headers: {"Content-Type" : "application/json"},
-        body: JSON.stringify(CATEGORY_QUERY)
+        body: JSON.stringify({query:CATEGORY_QUERY,variables:{title: name}})
       })
-      .then(res=>res.json())
+      .then(res=> res.json())
       .then(result=>
         {
           
@@ -70,7 +68,7 @@ import {withParams} from '../../customhook/HOC'
       <div>
         {/* <div>Name: {name} </div> */}
         <div>Name</div>
-        <div className='products'>
+        {/* <div className='products'>
         {
             this.state.category.map((cloth,index)=>{
                 return(
@@ -82,7 +80,7 @@ import {withParams} from '../../customhook/HOC'
                 )
             })
         }
-        </div>
+        </div> */}
       </div>
 
     )
