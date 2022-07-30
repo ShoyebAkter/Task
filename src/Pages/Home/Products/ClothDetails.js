@@ -46,6 +46,7 @@ export default class ClothDetails extends Component {
   render() 
   
   {
+    console.log(this.props)
     return (
       <div> 
         <div>Pic</div>

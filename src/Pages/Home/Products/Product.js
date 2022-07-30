@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import Cloth from './Cloth'
 import './Product.css'
-import { withRouter } from "react-router-dom";
+import {withParams} from '../../customhook/HOC'
 
 
 
-export default class Product extends Component {
+ class Product extends Component {
 
   state={
     category: [],
@@ -16,9 +16,11 @@ export default class Product extends Component {
       this.fetchCategory()
       // console.log(this.props)
       // console.log(this.props.match.params)
+      
     }
 
     fetchCategory(){
+      
       const CATEGORY_QUERY={
         query:`
         query {
@@ -55,12 +57,12 @@ export default class Product extends Component {
         {
           // console.log(result)
           this.setState({category: result.data.category.products})
-          // console.log(this.state.category)
+          this.setState({categoryName: this.props.params.nameId})
+          console.log(this.state.categoryName)
         })
     }
   render()
   {
-    console.log(this.props)
     // const { name } = this.props.match.params['name'];
     return (
       <div>
@@ -84,3 +86,4 @@ export default class Product extends Component {
     )
   }
 }
+export default withParams(Product)

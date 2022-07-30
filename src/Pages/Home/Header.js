@@ -47,9 +47,9 @@ export default class Header extends Component {
                 <div>
                 {
                     this.state.categories.map(category=>{
-                        const name=category.name;
+                        const nameId=category.name;
                         return(
-                            <NavLink to={`/${name}`} onClick={()=> <Product category={category}/>}>{name}</NavLink>
+                            <NavLink to={`/${nameId}`}>{nameId}</NavLink>
                         )
                     })
                 }
