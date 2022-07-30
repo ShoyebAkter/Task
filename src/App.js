@@ -12,23 +12,14 @@ import CartDetails from './Pages/Cart/CartDetails';
 
 
 function App() {
-  const { data, loading, error } = useQuery(PRODUCTS_QUERY);
-  const { singleData,sdLoading} = useQuery(SINGLEPRODUCT_QUERY);
   const dispatch = useDispatch();
   const getdata = useSelector((state) => state.cartreducer.carts);
-  // const {id}=useParams();
-  // const history = useNavigate();
-  console.log(singleData)
-  if (loading || sdLoading) return "Loading...";
   return (
     <>
+    <Home getdata={getdata}/>
     <Routes>
-     <Route path='/' element={<Home 
-    data={data}
-    dispatch={dispatch}
-    getdata={getdata}
-    />} />
-     <Route path='/cloth/:id' element={<ClothDetails singleData={singleData} />} />
+     <Route path='/cloth/:id' element={<ClothDetails  />} />
+     <Route path='/:name' element={<Product dispatch={dispatch}/>}/>
      <Route path='/cart' element={<CartDetails getdata={getdata}/>}/>
    </Routes>
     </>

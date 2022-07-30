@@ -11,10 +11,7 @@ export default class Home extends Component {
   {
     return (
       <div>
-        <Header getdata={this.props.getdata}/>
-        <Product data={this.props.data}
-        dispatch={this.props.dispatch}
-        />
+        <Header getdata={this.props.getdata}/>      
       </div>
     )
   }

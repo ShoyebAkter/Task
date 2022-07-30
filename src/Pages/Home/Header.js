@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 import Cart from '../Cart/Cart'
 import Currencies from '../currency/Currencies'
 import './Header.css'
+import Product from './Products/Product'
 
 export default class Header extends Component {
 
@@ -37,14 +39,17 @@ export default class Header extends Component {
             console.log(this.state.categories)
             })
     }
+
+
     render() {
         return (
             <div class="topnav" id="myTopnav">
                 <div>
                 {
                     this.state.categories.map(category=>{
+                        const name=category.name;
                         return(
-                            <div>{category.name}</div>
+                            <NavLink to={`/${name}`} onClick={()=> <Product category={category}/>}>{name}</NavLink>
                         )
                     })
                 }
