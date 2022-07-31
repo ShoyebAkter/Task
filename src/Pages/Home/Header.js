@@ -64,7 +64,7 @@ export default class Header extends Component {
                     <button class="dropbtn">Currency
                     </button>
                     <div class="dropdown-content">
-                        <Currencies changeCurrency={this.props.changeCurrency} />
+                        <Currencies />
                     </div>
                 </div>
                 <div class="dropdown">

@@ -80,7 +80,7 @@ import {withParams} from '../../customhook/HOC'
             this.state.category.map((cloth,index)=>{
                 return(
                     <Cloth
-                    currencyIndex={this.props.currencyIndex}
+                    
                     key={index}
                     cloth={cloth}
                     dispatch={this.props.dispatch}

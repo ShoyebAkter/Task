@@ -8,13 +8,14 @@ export default class Cloth extends Component {
         super(props)
         console.log(this.props)
         this.state={
-            cloth: this.props.cloth
+            product: this.props.cloth,
+
         }
         this.send=this.send.bind(this)
     }
 
     componentDidMount(){
-      console.log(this.props.currencyIndex)
+      
     }
 
     send=(ele)=>{
@@ -26,15 +27,15 @@ export default class Cloth extends Component {
     return (
       <div className='product'>
         <div >
-          <NavLink to={`/product/:${this.state.cloth.id}`}>
-          <img src={this.state.cloth.gallery[2]} alt=""></img>
+          <NavLink to={`/product/${this.state.product.id}`}>
+          <img src={this.state.product.gallery[2]} alt=""></img>
           </NavLink>
           </div>
-        <div>{this.state.cloth.name}</div>
-        <div>{this.state.cloth.brand}</div>
-        {this.state.cloth.description}
-        <div>{this.state.cloth.prices[0].amount}</div>
-        <div><button onClick={()=> this.send(this.state.cloth)}>Add to cart</button></div>
+        <div>{this.state.product.name}</div>
+        <div>{this.state.product.brand}</div>
+        {this.state.product.description}
+        <div>{this.state.product.prices[0].amount}</div>
+        <div><button onClick={()=> this.send(this.state.product)}>Add to cart</button></div>
       </div>
     )
   }

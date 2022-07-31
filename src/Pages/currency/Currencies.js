@@ -10,6 +10,7 @@ export default class Currencies extends Component {
 
     componentDidMount() {
         this.fetchCurrency()
+
     }
 
     fetchCurrency() {
@@ -35,9 +36,7 @@ export default class Currencies extends Component {
             console.log(this.state.currencies)
             })
     }
-
     
-
     render() {
         return (
             <div>
@@ -45,7 +44,7 @@ export default class Currencies extends Component {
                     this.state.currencies.map((currency,index)=>{
                         return(
                             <div>
-                                <div onClick={()=>this.props.changeCurrency(index)}>{currency.label}</div>
+                                <div onClick={()=>console.log(index)}>{currency.label}</div>
                             </div>
                         )
                     })
