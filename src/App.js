@@ -18,7 +18,7 @@ function App() {
     <>
     <Home getdata={getdata}/>
     <Routes>
-     <Route path='/cloth/:id' element={<ClothDetails  />} />
+     <Route path='/product/:id' element={<ClothDetails  />} />
      <Route path='/:nameId' element={<Product dispatch={dispatch}/>}/>
      <Route path='/cart' element={<CartDetails getdata={getdata}/>}/>
    </Routes>

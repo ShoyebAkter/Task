@@ -1,9 +1,11 @@
 import { gql } from '@apollo/client';
 import React, { Component } from 'react';
 import {Query} from 'react-apollo'
-const PRODUCT_QUERY=gql`
-query{
-  product(id:"huarache-x-stussy-le"){
+
+import { withParams } from '../../customhook/HOC';
+const PRODUCT_QUERY=`
+query getproduct($id: String!){
+  product(id:$id){
   id,
   name,
   inStock,
@@ -33,14 +35,32 @@ query{
 `
 
 
-export default class ClothDetails extends Component {
+class ClothDetails extends Component {
   state={
     productData: [{name:"foo"}]
   };
-  constructor(props){
-    super(props);
-    
-    console.log(typeof(this.state.productData))
+  
+  componentDidMount(){
+    // this.fetchProduct();
+    console.log(this.props)
+  }
+
+  fetchProduct(){
+   const productId="";
+
+    fetch('http://localhost:4000/',{
+        method: "POST",
+        headers: {"Content-Type" : "application/json"},
+        body: JSON.stringify({query:PRODUCT_QUERY,variables:{title: productId}})
+      })
+      .then(res=> res.json())
+      .then(result=>
+        {
+          
+          // this.setState({category: result.data.category.products})
+          // console.log(this.state.category)
+          // console.log(this.state.categoryName)
+        })
   }
 
   render() 
@@ -60,3 +80,5 @@ export default class ClothDetails extends Component {
     )
   }
 }
+
+export default withParams(ClothDetails)

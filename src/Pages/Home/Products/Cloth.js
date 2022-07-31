@@ -22,7 +22,7 @@ export default class Cloth extends Component {
     return (
       <div className='product'>
         <div >
-          <NavLink to={`/cloth/:id`}>
+          <NavLink to={`/product/:${this.state.cloth.id}`}>
           <img src={this.state.cloth.gallery[2]} alt=""></img>
           </NavLink>
           </div>

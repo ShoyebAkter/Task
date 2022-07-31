@@ -8,8 +8,7 @@ import {withParams} from '../../customhook/HOC'
  class Product extends Component {
 
   state={
-    category: [],
-    categoryName: "all"
+    category: []
   }
 
     componentDidMount(){
@@ -20,29 +19,40 @@ import {withParams} from '../../customhook/HOC'
     }
 
     async fetchCategory(){
-      const name="all";
+      const name=this.props.params.nameId;
       const CATEGORY_QUERY= `       
-        query getcategory($title: String!){
-          category(input: {title: $title}){
-          name,
-          products{
-            id,
-            name,
-            inStock,
-            description,
-            category,
-            brand,
-            gallery,
-            prices{
-              currency{
-                label,
-                symbol
-              },
-              amount
-            }
-          }
-        }
+        
+query getcategory($title: String!){
+  category(input: {title: $title}){
+  name,
+  products{
+    id,
+    name,
+    inStock,
+    description,
+    category,
+    brand,
+    gallery,
+    attributes{
+      id,
+      name,
+      type,
+      items{
+        displayValue,
+        value,
+        id
       }
+    },
+    prices{
+      currency{
+        label,
+        symbol
+      },
+      amount
+    }
+  }
+}
+}
         `
 
       
@@ -55,9 +65,8 @@ import {withParams} from '../../customhook/HOC'
       .then(result=>
         {
           
-          // this.setState({category: result.data.category.products})
-          // this.setState({categoryName: this.props.params.nameId})
-          console.log(result)
+          this.setState({category: result.data.category.products})
+          console.log(this.state.category)
           // console.log(this.state.categoryName)
         })
     }
@@ -68,7 +77,7 @@ import {withParams} from '../../customhook/HOC'
       <div>
         {/* <div>Name: {name} </div> */}
         <div>Name</div>
-        {/* <div className='products'>
+        <div className='products'>
         {
             this.state.category.map((cloth,index)=>{
                 return(
@@ -80,7 +89,7 @@ import {withParams} from '../../customhook/HOC'
                 )
             })
         }
-        </div> */}
+        </div>
       </div>
 
     )
