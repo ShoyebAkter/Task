@@ -36,14 +36,16 @@ export default class Currencies extends Component {
             })
     }
 
+    
+
     render() {
         return (
             <div>
                 {
-                    this.state.currencies.map(currency=>{
+                    this.state.currencies.map((currency,index)=>{
                         return(
                             <div>
-                                <div>{currency.label}</div>
+                                <div onClick={()=>this.props.changeCurrency(index)}>{currency.label}</div>
                             </div>
                         )
                     })

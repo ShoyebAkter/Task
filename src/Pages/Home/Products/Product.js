@@ -13,7 +13,7 @@ import {withParams} from '../../customhook/HOC'
 
     componentDidMount(){
       this.fetchCategory()
-      // console.log(this.props)
+      console.log(this.props)
       // console.log(this.props.params.nameId)
       
     }
@@ -21,8 +21,7 @@ import {withParams} from '../../customhook/HOC'
     async fetchCategory(){
       const name=this.props.params.nameId;
       const CATEGORY_QUERY= `       
-        
-query getcategory($title: String!){
+        query getcategory($title: String!){
   category(input: {title: $title}){
   name,
   products{
@@ -64,7 +63,6 @@ query getcategory($title: String!){
       .then(res=> res.json())
       .then(result=>
         {
-          
           this.setState({category: result.data.category.products})
           console.log(this.state.category)
           // console.log(this.state.categoryName)
@@ -82,6 +80,7 @@ query getcategory($title: String!){
             this.state.category.map((cloth,index)=>{
                 return(
                     <Cloth
+                    currencyIndex={this.props.currencyIndex}
                     key={index}
                     cloth={cloth}
                     dispatch={this.props.dispatch}

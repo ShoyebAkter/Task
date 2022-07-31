@@ -13,6 +13,10 @@ export default class Cloth extends Component {
         this.send=this.send.bind(this)
     }
 
+    componentDidMount(){
+      console.log(this.props.currencyIndex)
+    }
+
     send=(ele)=>{
         this.props.dispatch(ADD(ele))
     }

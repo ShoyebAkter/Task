@@ -8,10 +8,12 @@ import Product from './Products/Product'
 export default class Header extends Component {
 
     state={
-        categories: []
+        categories: [],
+        price: 0
     }
     componentDidMount(){
         this.fetchCategories()
+        // this.changeCurrency()
     }
 
     fetchCategories(){
@@ -40,6 +42,7 @@ export default class Header extends Component {
             })
     }
 
+    
 
     render() {
         return (
@@ -61,7 +64,7 @@ export default class Header extends Component {
                     <button class="dropbtn">Currency
                     </button>
                     <div class="dropdown-content">
-                        <Currencies />
+                        <Currencies changeCurrency={this.props.changeCurrency} />
                     </div>
                 </div>
                 <div class="dropdown">

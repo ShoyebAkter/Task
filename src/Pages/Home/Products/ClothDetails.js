@@ -3,7 +3,24 @@ import React, { Component } from 'react';
 import {Query} from 'react-apollo'
 
 import { withParams } from '../../customhook/HOC';
-const PRODUCT_QUERY=`
+
+
+
+class ClothDetails extends Component {
+  state={
+    productData: []
+  };
+  
+  componentDidMount(){
+    this.fetchProduct();
+    console.log(this.props)
+  }
+
+  fetchProduct(){
+   const productId=this.props.params.id;
+  //  console.log(productId);
+
+  const PRODUCT_QUERY=`
 query getproduct($id: String!){
   product(id:$id){
   id,
@@ -34,31 +51,17 @@ query getproduct($id: String!){
 }
 `
 
-
-class ClothDetails extends Component {
-  state={
-    productData: [{name:"foo"}]
-  };
-  
-  componentDidMount(){
-    // this.fetchProduct();
-    console.log(this.props)
-  }
-
-  fetchProduct(){
-   const productId="";
-
     fetch('http://localhost:4000/',{
         method: "POST",
         headers: {"Content-Type" : "application/json"},
-        body: JSON.stringify({query:PRODUCT_QUERY,variables:{title: productId}})
+        body: JSON.stringify({query:PRODUCT_QUERY,variables:{id: productId}})
       })
       .then(res=> res.json())
       .then(result=>
         {
-          
-          // this.setState({category: result.data.category.products})
-          // console.log(this.state.category)
+          console.log(result)
+          this.setState({productData: result.data.product})
+          console.log(this.state.productData)
           // console.log(this.state.categoryName)
         })
   }
@@ -70,8 +73,8 @@ class ClothDetails extends Component {
     return (
       <div> 
         <div>Pic</div>
-        <div>Name</div>
-        <div>Size</div>
+        <div>Name: {this.state.productData.name}</div>
+        <div>brand: {this.state.productData.brand}</div>
         <div>Price</div>
         <div>Button</div>
         <div>Description</div>
