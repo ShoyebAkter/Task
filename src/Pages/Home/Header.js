@@ -16,10 +16,7 @@ export default class Header extends Component {
         // this.changeCurrency()
     }
 
-    changeCurrency=(index)=>{
-        this.setState({ price: index})
-        console.log(index)
-    }
+    
 
     fetchCategories(){
         const CATEGORY_QUERY={
@@ -45,11 +42,10 @@ export default class Header extends Component {
             this.setState({categories:result.data.categories})
             console.log(this.state.categories)
             })
-    }
-
-    
+    } 
 
     render() {
+        console.log(this.props)
         return (
             <div class="topnav" id="myTopnav">
                 <div>
@@ -69,14 +65,14 @@ export default class Header extends Component {
                     <button class="dropbtn">Currency
                     </button>
                     <div class="dropdown-content">
-                        <Currencies changeCurrency={this.changeCurrency}/>
+                        <Currencies />
                     </div>
                 </div>
                 <div class="dropdown">
                     <button class="dropbtn">Cart
                     </button>
                     <div class="dropdown-content">
-                        <Cart getdata={this.props.getdata}/>
+                        <Cart />
                     </div>
                 </div>
             </div>

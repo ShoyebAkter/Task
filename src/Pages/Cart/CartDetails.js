@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 
-export default class CartDetails extends Component {
+
+class CartDetails extends Component {
+  state={
+    cartDetails:[]
+  }
+
 
   render() {
+    console.log(this.state.cartDetails)
     return (
       <div>
         {
-          this.props.getdata.map((product,index)=>{
+          this.props.cartDetails.map((product,index)=>{
             return(
               <div key={index}>
                 <div>{product.name}</div>
@@ -26,3 +33,12 @@ export default class CartDetails extends Component {
     )
   }
 }
+
+function mapStateToProps(state){
+  return{
+    cartDetails: state.cartreducer.carts
+  }
+}
+
+
+export default connect(mapStateToProps)(CartDetails)

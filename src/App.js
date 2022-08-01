@@ -5,21 +5,22 @@ import Product from './Pages/Home/Products/Product';
 import ClothDetails from './Pages/Home/Products/ClothDetails';
 import CartDetails from './Pages/Cart/CartDetails';
 import Header from './Pages/Home/Header';
+import { Component } from 'react';
 
-function App() {
-  const dispatch = useDispatch();
-  const getdata = useSelector((state) => state.cartreducer.carts);
+export default class App extends Component {
+ 
 
+ render(){
   return (
     <>
-    <Header getdata={getdata}/>
+    <Header />
     <Routes>
      <Route path='/product/:id' element={<ClothDetails  />} />
-     <Route path='/:nameId' element={<Product  dispatch={dispatch}/>}/>
-     <Route path='/cart' element={<CartDetails getdata={getdata}/>}/>
+     <Route path='/:nameId' element={<Product/>}/>
+     <Route path='/cart' element={<CartDetails />}/>
    </Routes>
     </>
   );
+ }
 }
 
-export default App;

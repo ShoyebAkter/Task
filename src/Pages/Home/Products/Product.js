@@ -83,7 +83,6 @@ import {withParams} from '../../customhook/HOC'
                     
                     key={index}
                     cloth={cloth}
-                    dispatch={this.props.dispatch}
                     />
                 )
             })

@@ -1,20 +1,23 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux/es/exports'
 
-export default class Cart extends Component {
-    constructor(props){
-        super(props)
-        console.log(props)
+class Cart extends Component {
+    state={
+        cart:[]
     }
+
   render() {
+    console.log(this.props.getdata)
+    console.log(this.props)
     return (
       <div>
-        <div>My Bag: {this.props.getdata.length} items</div>
+        <div>My Bag: {this.state.cart.length} items</div>
         {
-        this.props.getdata.length?
+        this.props.cart.length?
         <div>
             {
-                this.props.getdata.map((element=>{
+                this.props.cart.map((element=>{
                     return(
                         <div>
                             <div>{element.name}</div>
@@ -40,3 +43,10 @@ export default class Cart extends Component {
     )
   }
 }
+
+const mapStateToProps=(state)=>{
+return{
+    cart: state.cartreducer.carts,
+}
+}
+export default connect(mapStateToProps)(Cart);

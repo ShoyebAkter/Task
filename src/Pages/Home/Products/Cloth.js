@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { ADD } from '../../../redux/action/action'
 import './Cloth.css'
 import { NavLink } from 'react-router-dom';
+import {connect} from 'react-redux'
 
-export default class Cloth extends Component {
+class Cloth extends Component {
     constructor(props){
         super(props)
         console.log(this.props)
@@ -19,7 +20,7 @@ export default class Cloth extends Component {
     }
 
     send=(ele)=>{
-        this.props.dispatch(ADD(ele))
+        this.props.ADD(ele)
     }
   render()
   
@@ -40,3 +41,5 @@ export default class Cloth extends Component {
     )
   }
 }
+
+export default connect(null,{ADD})(Cloth)
