@@ -8,12 +8,20 @@ import Header from './Pages/Home/Header';
 import { Component } from 'react';
 
 export default class App extends Component {
- 
+ state={
+  priceIndex: null
+ }
+
+ changeCurrency=(index)=>{
+  // this.setState({ priceIndex: index})
+  // console.log(this.state.priceIndex)
+  console.log(index)
+}
 
  render(){
   return (
     <>
-    <Header />
+    <Header changeCurrency={this.changeCurrency}/>
     <Routes>
      <Route path='/product/:id' element={<ClothDetails  />} />
      <Route path='/:nameId' element={<Product/>}/>
