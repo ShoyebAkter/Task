@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client'
+import { reobserveCacheFirst } from '@apollo/client/core/ObservableQuery'
 import React, { Component } from 'react'
 
 
@@ -8,10 +9,16 @@ export default class Currencies extends Component {
         currencies: []
     }
 
-    componentDidMount() {
+    componentDidMount() {    
         this.fetchCurrency()
-
+        // console.log(this.props.price)
     }
+
+    newIndex(index){
+        console.log(this.props)
+        // this.props.changeCurrency(index)
+    }
+
 
     fetchCurrency() {
         const CURRENCY_QUERY = {
@@ -44,7 +51,7 @@ export default class Currencies extends Component {
                     this.state.currencies.map((currency,index)=>{
                         return(
                             <div>
-                                <div onClick={()=>console.log(index)}>{currency.label}</div>
+                                <div onClick={()=>this.props.changeCurrency(index)}>{currency.label}</div>
                             </div>
                         )
                     })

@@ -18,3 +18,9 @@ export const REMOVE = (iteam) => {
     }
 }
 
+export const CHANGE =(index)=>{
+    return{
+        type: "Change_Currency",
+        payload: index
+    }
+}

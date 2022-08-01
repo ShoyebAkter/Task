@@ -9,11 +9,16 @@ export default class Header extends Component {
 
     state={
         categories: [],
-        price: 0
+        price: null
     }
     componentDidMount(){
         this.fetchCategories()
         // this.changeCurrency()
+    }
+
+    changeCurrency=(index)=>{
+        this.setState({ price: index})
+        console.log(index)
     }
 
     fetchCategories(){
@@ -64,7 +69,7 @@ export default class Header extends Component {
                     <button class="dropbtn">Currency
                     </button>
                     <div class="dropdown-content">
-                        <Currencies />
+                        <Currencies changeCurrency={this.changeCurrency}/>
                     </div>
                 </div>
                 <div class="dropdown">
