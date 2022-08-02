@@ -29,9 +29,6 @@ class Cart extends Component {
                                 )
                             })
                             }
-                            :
-                            <div>No Attribute</div>
-                            
                             </div>
                             
                         </div>

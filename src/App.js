@@ -1,5 +1,4 @@
 import './App.css';
-import { useDispatch, useSelector } from 'react-redux';
 import { Routes,Route } from 'react-router-dom';
 import Product from './Pages/Home/Products/Product';
 import ClothDetails from './Pages/Home/Products/ClothDetails';

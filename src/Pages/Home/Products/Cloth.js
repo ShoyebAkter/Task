@@ -27,7 +27,7 @@ class Cloth extends Component {
       <div className='product'>
         <div >
           <NavLink to={`/product/${this.state.product.id}`}>
-          <img src={this.state.product.gallery[2]} alt=""></img>
+          <img src={this.state.product.gallery[0]} alt=""></img>
           </NavLink>
           </div>
         <div>{this.state.product.name}</div>
