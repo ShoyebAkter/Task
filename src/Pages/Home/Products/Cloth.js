@@ -10,14 +10,11 @@ class Cloth extends Component {
         console.log(this.props)
         this.state={
             product: this.props.cloth,
-
+            currencyIndex:null
         }
         this.send=this.send.bind(this)
     }
 
-    componentDidMount(){
-      
-    }
 
     send=(ele)=>{
         this.props.ADD(ele)
@@ -25,6 +22,7 @@ class Cloth extends Component {
   render()
   
   {
+    console.log(this.props)
     return (
       <div className='product'>
         <div >
@@ -35,11 +33,17 @@ class Cloth extends Component {
         <div>{this.state.product.name}</div>
         <div>{this.state.product.brand}</div>
         {this.state.product.description}
-        <div>{this.state.product.prices[0].amount}</div>
+        <div>{this.state.product.prices[this.props.currencyIndex].amount}</div>
         <div><button onClick={()=> this.send(this.state.product)}>Add to cart</button></div>
       </div>
     )
   }
 }
 
-export default connect(null,{ADD})(Cloth)
+const mapStateToProps=(state)=>{
+  return{
+    currencyIndex: state.cartreducer.priceIndex
+  }
+}
+
+export default connect(mapStateToProps,{ADD})(Cloth)

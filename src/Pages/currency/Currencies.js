@@ -1,9 +1,11 @@
 import { gql } from '@apollo/client'
 import { reobserveCacheFirst } from '@apollo/client/core/ObservableQuery'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import {CHANGE} from "../../redux/action/action"
 
 
-export default class Currencies extends Component {
+class Currencies extends Component {
 
     state={
         currencies: []
@@ -15,8 +17,7 @@ export default class Currencies extends Component {
     }
 
     newIndex(index){
-        console.log(this.props)
-        // this.props.changeCurrency(index)
+        this.props.CHANGE(index)
     }
 
 
@@ -51,7 +52,7 @@ export default class Currencies extends Component {
                     this.state.currencies.map((currency,index)=>{
                         return(
                             <div>
-                                <div onClick={()=>this.props.changeCurrency(index)}>{currency.label}</div>
+                                <div onClick={()=>this.newIndex(index)}>{currency.label}</div>
                             </div>
                         )
                     })
@@ -60,3 +61,5 @@ export default class Currencies extends Component {
         )
     }
 }
+
+export default connect(null,{CHANGE})(Currencies);

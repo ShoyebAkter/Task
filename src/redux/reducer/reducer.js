@@ -1,5 +1,6 @@
 const INIT_STATE = {
-    carts: []
+    carts: [],
+    priceIndex:0
 };
 
 
@@ -54,8 +55,15 @@ export const cartreducer = (state = INIT_STATE, action) => {
                     carts:data
                 }
             }
-            break
-               
+
+        case "Change_Currency":
+            const newIndex=action.payload;
+            return{
+                ...state,
+                priceIndex:newIndex
+            }
+            
+              
         default:
             return state
             

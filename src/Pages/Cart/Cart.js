@@ -12,7 +12,7 @@ class Cart extends Component {
     console.log(this.props)
     return (
       <div>
-        <div>My Bag: {this.state.cart.length} items</div>
+        <div>My Bag: {this.props.cart.length} items</div>
         {
         this.props.cart.length?
         <div>
@@ -22,13 +22,17 @@ class Cart extends Component {
                         <div>
                             <div>{element.name}</div>
                             <div>{element.prices[0].amount}</div>
-                            <div>{element.attributes[0].name}: {
+                            <div>{element.attributes[0].name}? {
                             element.attributes[0].items.map(size=>{
                                 return(
                                     <div>{size.value}</div>
                                 )
                             })
-                            }</div>
+                            }
+                            :
+                            <div>No Attribute</div>
+                            
+                            </div>
                             
                         </div>
                     )
