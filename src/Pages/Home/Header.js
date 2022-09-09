@@ -7,19 +7,19 @@ import Product from './Products/Product'
 
 export default class Header extends Component {
 
-    state={
+    state = {
         categories: [],
         price: null
     }
-    componentDidMount(){
+    componentDidMount() {
         this.fetchCategories()
         // this.changeCurrency()
     }
 
-    
 
-    fetchCategories(){
-        const CATEGORY_QUERY={
+
+    fetchCategories() {
+        const CATEGORY_QUERY = {
             query: `
             query{
                 categories{
@@ -36,43 +36,46 @@ export default class Header extends Component {
             .then(res => res.json())
             .then(result => {
                 console.log(result)
-            const categoryArray=[];
+                const categoryArray = [];
                 categoryArray.push(result.data.categories)
-            // console.log(categoryArray)
-            this.setState({categories:result.data.categories})
-            console.log(this.state.categories)
+                // console.log(categoryArray)
+                this.setState({ categories: result.data.categories })
+                console.log(this.state.categories)
             })
-    } 
+    }
 
     render() {
         console.log(this.props)
         return (
             <div class="topnav" id="myTopnav">
-                <div>
-                {
-                    this.state.categories.map(category=>{
-                        const nameId=category.name;
-                        return(
-                            <NavLink to={`/${nameId}`}>{nameId}</NavLink>
-                        )
-                    })
-                }
+                <div class="navsection">
+                    {
+                        this.state.categories.map(category => {
+                            const nameId = category.name;
+                            return (
+                                <NavLink to={`/${nameId}`}>{nameId}</NavLink>
+                            )
+                        })
+                    }
                 </div>
                 {/* <div>
                     Button
                 </div> */}
-                <div class="dropdown">
-                    <button class="dropbtn">Currency
-                    </button>
-                    <div class="dropdown-content">
-                        <Currencies changeCurrency={this.props.changeCurrency}/>
+                <div>
+                    
+                    <div class="dropdown">
+                        <button class="dropbtn">Cart
+                        </button>
+                        <div class="dropdown-content">
+                            <Cart />
+                        </div>
                     </div>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">Cart
-                    </button>
-                    <div class="dropdown-content">
-                        <Cart />
+                    <div class="dropdown">
+                        <button class="dropbtn">Currency
+                        </button>
+                        <div class="dropdown-content">
+                            <Currencies changeCurrency={this.props.changeCurrency} />
+                        </div>
                     </div>
                 </div>
             </div>

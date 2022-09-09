@@ -70,11 +70,12 @@ import {withParams} from '../../customhook/HOC'
     }
   render()
   {
+    console.log(this.state.category);
     // const { name } = this.props.match.params['name'];
     return (
       <div>
         {/* <div>Name: {name} </div> */}
-        <div>Name</div>
+        <div style={{"marginLeft":"101px"}}>Name : {this.props.params.nameId}</div>
         <div className='products'>
         {
             this.state.category.map((cloth,index)=>{

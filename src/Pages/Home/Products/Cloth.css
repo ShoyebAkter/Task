@@ -1,11 +1,19 @@
 .product{
-    height: 400px;
-    width: 400px;
-    background-color: rgb(255, 255, 255);
+    width: 386px;
+height: 444px;
+background: #FFFFFF;
     box-shadow: 5px solid rgb(24, 23, 23);
 }
 
 img{
-    height: 250px;
-    width: 380px;
+    width: 356px;
+height: 338px;
+margin-inline: auto;
+}
+.textarea{
+    width: 354px;
+height: 29px;
+color: #8D8F9A;
+font-weight: 300;
+font-size: 18px;
 }
