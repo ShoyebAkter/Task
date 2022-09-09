@@ -18,12 +18,13 @@ class Cart extends Component {
                     this.props.cart.length ?
                         <div className='itemcontainer' >
                             <div className='totalitem'>My Bag: {this.props.cart.length}items</div>
+                            <div className='itembox'>
                             {
                                 this.props.cart.map((element => {
                                     return (
                                         <div>
 
-                                            <div className='itembox'>
+                                            
                                                 <div className='singleitem'>
                                                     <div className='itemdetails'>
                                                         <div className='itemtext'>
@@ -32,25 +33,11 @@ class Cart extends Component {
                                                                 <div className='productprice'>{element.prices[0].amount}</div>
                                                             </div>
                                                             <div className='title'>{element.attributes[0].name}:
-                                                            <div >
+                                                            <div className='sizeframe'>
                                                             {
-                                                                element.attributes.map(attribute => {
+                                                                element.attributes[0].items.map(attribute => {
                                                                     return (
-                                                                        <div>
-                                                                            {
-                                                                                attribute.items &&
-                                                                                <div className='sizeframe'>
-                                                                                    {
-                                                                                        attribute.items.map(size=>{
-                                                                                            return (
-                                                                                                <div className='sizevalue'>{size.value}</div>
-                                                                                            )
-                                                                                        })
-                                                                                    }
-                                                                                </div>
-                                                                                
-                                                                            }
-                                                                        </div>
+                                                                        <div className='sizevalue'>{attribute.value}</div>
                                                                     
                                                                     )
                                                                 })
@@ -66,18 +53,24 @@ class Cart extends Component {
                                                         </div>
 
                                                     </div>
-                                                    <div>
-                                                        Image
+                                                    <div  >
+                                                        <img className='imagecontainer'  src={element.gallery[0]} alt=""/>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                        </div>
+                                        
                                     )
                                 }))
                             }
+                            </div>
+                            <div className='total'>
+                                <div> Total </div>
+                                <div> Price </div>
+                            </div>
                             <div>
                                 <NavLink to={`/cart`}>View Bag</NavLink>
+                                <NavLink to={`/cart`}>Checkout</NavLink>
                             </div>
                         </div>
                         :
