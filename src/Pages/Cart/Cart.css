@@ -141,6 +141,7 @@ color: #1D1F22;
 .plusclass{
     height: 24px;
     width: 24px;
+    cursor: pointer;
 }
 .checkoutbutton{
     width: 140px;

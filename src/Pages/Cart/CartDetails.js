@@ -8,7 +8,8 @@ class CartDetails extends Component {
   state = {
     cartDetails: [],
     currencyIndex: null,
-    isActive: null
+    isActive: null,
+    total:0
   }
 
 

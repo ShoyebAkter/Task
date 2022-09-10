@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux/es/exports'
+
+import { REMOVE } from '../../redux/action/action'
 import './Cart.css'
 import plus from '../../assets/plus-square.png'
 import minus from '../../assets/minus-square.png'
@@ -8,7 +10,11 @@ import minus from '../../assets/minus-square.png'
 class Cart extends Component {
     state = {
         cart: [],
-        currencyIndex: null
+        currencyIndex: null,
+    }
+    
+    remove=(ele)=>{
+        this.props.REMOVE(ele)
     }
 
     render() {
@@ -52,7 +58,7 @@ class Cart extends Component {
                                                         <div className='buttonarea'>
                                                             <div><img className='plusclass' src={plus} alt="" /></div>
                                                             <div>1</div>
-                                                            <div><img className='plusclass' src={minus} alt="" /></div>
+                                                            <div onClick={()=>this.remove(element)}><img className='plusclass' src={minus} alt="" /></div>
                                                         </div>
 
                                                     </div>
@@ -92,4 +98,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Cart);
+export default connect(mapStateToProps,{REMOVE})(Cart);
