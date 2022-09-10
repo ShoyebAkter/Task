@@ -4,6 +4,7 @@ import Cart from '../Cart/Cart'
 import Currencies from '../currency/Currencies'
 import './Header.css'
 import Product from './Products/Product'
+import cart from '../../assets/cart.png'
 
 export default class Header extends Component {
 
@@ -70,7 +71,7 @@ export default class Header extends Component {
                         </div>
                     </div>
                     <div class="dropdown">
-                        <button class="dropbtn">Cart
+                        <button className='dropbtn'>Cart
                         </button>
                         <div class="dropdown-content">
                             <Cart />

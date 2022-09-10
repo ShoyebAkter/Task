@@ -112,9 +112,43 @@ text-align: center;
     color: #1D1F22;
     display: flex;
     justify-content: space-between;
+    margin-top: 34px;
 }
 .imagecontainer{
     margin-right: 8px;
     width: 110px;
 height: 190px;
+}
+
+.buttoncontainer{
+    width: 292px;
+height: 43px;
+gap: 12px;
+display: flex;
+justify-content: space-between;
+margin-inline: auto;
+}
+.bagbutton{
+    width: 140px;
+height: 33px;
+    
+    background: #FFFFFF;
+    border: 1px solid #1D1F22;
+text-transform: uppercase;
+
+color: #1D1F22;
+}
+.plusclass{
+    height: 24px;
+    width: 24px;
+}
+.checkoutbutton{
+    width: 140px;
+    height: 33px;
+    
+    background: #5ECE7B;
+    border: 1px solid #1D1F22;
+text-transform: uppercase;
+
+color: #1D1F22;
 }

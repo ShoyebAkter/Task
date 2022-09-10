@@ -3,6 +3,7 @@ import { reobserveCacheFirst } from '@apollo/client/core/ObservableQuery'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {CHANGE} from "../../redux/action/action"
+import './Currencies.css'
 
 
 class Currencies extends Component {
@@ -47,12 +48,12 @@ class Currencies extends Component {
     
     render() {
         return (
-            <div>
+            <div className='currencycontainer' >
                 {
                     this.state.currencies.map((currency,index)=>{
                         return(
-                            <div>
-                                <div onClick={()=>this.newIndex(index)}>{currency.label}</div>
+                            <div className='singlecurrency'>
+                                <div className='currencyText' onClick={()=>this.newIndex(index)}>{currency.label}</div>
                             </div>
                         )
                     })

@@ -7,6 +7,10 @@
     display: flex;
     justify-content: space-between;
   }
+  .cartimage{
+    width: 20px;
+    height: 14px;
+  }
 
   .navsection{
     display: flex;
