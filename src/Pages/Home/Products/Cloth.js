@@ -10,17 +10,23 @@ class Cloth extends Component {
     console.log(this.props)
     this.state = {
       product: this.props.cloth,
-      currencyIndex: null
+      currencyIndex: null,
+      total:0
     }
     this.send = this.send.bind(this)
   }
-
+  
 
   send = (ele) => {
     this.props.ADD(ele)
+    // console.log(ele.prices[this.props.currencyIndex].amount);
+    // console.log(ele);
+    // let totalPrice=ele.qnty*ele.prices[this.props.currencyIndex].amount;
+    // console.log(totalPrice);
+    // this.setState({total:totalPrice})
   }
   render() {
-    console.log(this.props)
+    // console.log(this.state.total)
     return (
       <div className='product'>
         <div className='image'>
@@ -33,7 +39,10 @@ class Cloth extends Component {
           <div>{this.state.product.brand}</div>
           
           <div>{this.state.product.prices[this.props.currencyIndex].amount}</div>
-          <div><button onClick={() => this.send(this.state.product)}>Add to cart</button></div>
+          <div><button onClick={() => {
+            this.send(this.state.product);
+            
+          }}>Add to cart</button></div>
         </div>
       </div>
     )

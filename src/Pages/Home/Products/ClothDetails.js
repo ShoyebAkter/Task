@@ -1,26 +1,26 @@
 import { gql } from '@apollo/client';
 import React, { Component } from 'react';
-import {Query} from 'react-apollo'
-
+import { Query } from 'react-apollo'
+import './ClothDetails.css'
 import { withParams } from '../../customhook/HOC';
 
 
 
 class ClothDetails extends Component {
-  state={
+  state = {
     productData: []
   };
-  
-  componentDidMount(){
+
+  componentDidMount() {
     this.fetchProduct();
     console.log(this.props)
   }
 
-  fetchProduct(){
-   const productId=this.props.params.id;
-  //  console.log(productId);
+  fetchProduct() {
+    const productId = this.props.params.id;
+    //  console.log(productId);
 
-  const PRODUCT_QUERY=`
+    const PRODUCT_QUERY = `
 query getproduct($id: String!){
   product(id:$id){
   id,
@@ -51,35 +51,36 @@ query getproduct($id: String!){
 }
 `
 
-    fetch('http://localhost:4000/',{
-        method: "POST",
-        headers: {"Content-Type" : "application/json"},
-        body: JSON.stringify({query:PRODUCT_QUERY,variables:{id: productId}})
+    fetch('http://localhost:4000/', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: PRODUCT_QUERY, variables: { id: productId } })
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result)
+        this.setState({ productData: result.data.product })
+        console.log(this.state.productData)
+        // console.log(this.state.categoryName)
       })
-      .then(res=> res.json())
-      .then(result=>
-        {
-          console.log(result)
-          this.setState({productData: result.data.product})
-          console.log(this.state.productData)
-          // console.log(this.state.categoryName)
-        })
   }
 
-  render() 
-  
-  {
-    console.log(this.props)
+  render() {
+    console.log(this.state.productData.gallery)
     return (
-      <div> 
-        <div>Pic</div>
-        <div>Name: {this.state.productData.name}</div>
-        <div>brand: {this.state.productData.brand}</div>
-        <div>Price</div>
-        <div>Button</div>
-        <div>Description</div>
+      <div className='clothcontainer'>
+        <div>
+          <div><img  src="" alt='' /></div>
+        </div>
+        <div className='detailsgroup'>
+          <div>Name: {this.state.productData.name}</div>
+          <div>brand: {this.state.productData.brand}</div>
+          <div>Price</div>
+          <div>Button</div>
+          <div>Description</div>
+        </div>
       </div>
-      
+
     )
   }
 }

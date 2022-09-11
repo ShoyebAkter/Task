@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import './Cartdetails.css'
 import plus from '../../assets/plus-square2.png'
 import minus from '../../assets/minus-square2.png'
+import {ADD,REMOVE} from '../../redux/action/action'
 
 class CartDetails extends Component {
   state = {
@@ -10,6 +11,13 @@ class CartDetails extends Component {
     currencyIndex: null,
     isActive: null,
     total:0
+  }
+
+  add=(ele)=>{
+    this.props.ADD(ele);
+  }
+  remove=(ele)=>{
+    this.props.REMOVE(ele)
   }
 
 
@@ -77,9 +85,9 @@ class CartDetails extends Component {
                     </div>
                   </div>
                   <div className='buttongroup'>
-                    <div><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22" }} src={plus} alt="" /></div>
-                    <div>1</div>
-                    <div><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22" }} src={minus} alt="" /></div>
+                    <div onClick={()=>this.add(product)}><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22","cursor":"pointer" }} src={plus} alt="" /></div>
+                    <div>{product.qnty}</div>
+                    <div onClick={()=>this.remove(product)}><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22","cursor":"pointer" }} src={minus} alt="" /></div>
                   </div>
                 </div>
                 <div style={{ "margin-left": "24px" }} className='imagecontainer' >
@@ -112,4 +120,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(CartDetails)
+export default connect(mapStateToProps,{ADD,REMOVE})(CartDetails)
