@@ -8,7 +8,8 @@ import { withParams } from '../../customhook/HOC';
 
 class ClothDetails extends Component {
   state = {
-    productData: []
+    productData: [],
+    isActive: false
   };
 
   componentDidMount() {
@@ -16,7 +17,7 @@ class ClothDetails extends Component {
     console.log(this.props)
   }
 
-  fetchProduct() {
+  fetchProduct = async () => {
     const productId = this.props.params.id;
     //  console.log(productId);
 
@@ -51,7 +52,7 @@ query getproduct($id: String!){
 }
 `
 
-    fetch('http://localhost:4000/', {
+    await fetch('http://localhost:4000/', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query: PRODUCT_QUERY, variables: { id: productId } })
@@ -66,18 +67,75 @@ query getproduct($id: String!){
   }
 
   render() {
-    console.log(this.state.productData.gallery)
+    console.log(this.state.productData)
+    const regex = /(<([^>]+)>)/ig;
+    // const {id} = this.state.productData[0];
+    // console.log(id);
     return (
       <div className='clothcontainer'>
-        <div>
-          <div><img  src="" alt='' /></div>
+        <div >
+          <img style={{"height":"500px"}}  alt='' ></img>
         </div>
         <div className='detailsgroup'>
-          <div>Name: {this.state.productData.name}</div>
-          <div>brand: {this.state.productData.brand}</div>
-          <div>Price</div>
-          <div>Button</div>
-          <div>Description</div>
+          <div className="nametext">{this.state.productData.brand} </div>
+          <div className='brandtext'>{this.state.productData.name}</div>
+          {/* <div className="nametext">Brand: </div>
+          <div className='brandtext'>Name: </div> */}
+          <div >
+            {
+              this.state.productData.attributes?.map((attribute => {
+                return (
+                  <div style={{"marginBottom":"24px"}}>
+                    <div className='sizetext'>{attribute.name}:</div>
+                    <div className='valuetag'>
+
+                      {
+                        attribute.type === "swatch" ?
+                          attribute.items.map((size, index) => {
+                            // console.log(size.value);
+                            return (
+                              <div>
+                                {
+                                  <div key={index}
+                                    style={{
+                                      "color": "#FFFFFF",
+                                      "background": `${size.value}`
+                                    }}
+                                    className='colorarea'
+                                  ></div>
+                                }
+                              </div>
+                            )
+                          }) :
+                          attribute.items.map((size, index) => {
+                            // console.log(size.value);
+                            return (
+                              <div>
+                                {
+                                  <div key={index}
+                                    style={{
+                                      "background": this.state.isActive === size.value ? "#1D1F22" : "",
+                                      "color": this.state.isActive === size.value && "#FFFFFF",
+                                    }}
+                                    className='valuearea'
+                                    onClick={() => { this.setState({ isActive: size.value }) }}
+                                  >{size.value}</div>
+                                }
+                              </div>
+                            )
+                          })
+                      }
+                    </div>
+                  </div>
+                )
+              }))
+            }
+          </div>
+          <div className='pricetext'>Price</div>
+          <div className='totalprice'>$50</div>
+          <div className='descriptiontext' >{this.state.productData.description}</div>
+          <div><button className='cartbutton'>Add to Cart</button></div>
+          
         </div>
       </div>
 
