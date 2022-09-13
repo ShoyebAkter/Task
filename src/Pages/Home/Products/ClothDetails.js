@@ -1,25 +1,31 @@
 import { gql } from '@apollo/client';
 import React, { Component } from 'react';
-import { Query } from 'react-apollo'
+import {ADD} from '../../../redux/action/action'
 import './ClothDetails.css'
 import { withParams } from '../../customhook/HOC';
+import { connect } from 'react-redux';
 
 
 
 class ClothDetails extends Component {
   state = {
     productData: [],
-    isActive: false
+    currencyIndex:null,
+    isActive: false,
+    description:"",
+    gallery:[],
+    prices:[],
+    symbol:"",
   };
 
   componentDidMount() {
     this.fetchProduct();
-    console.log(this.props)
   }
 
   fetchProduct = async () => {
     const productId = this.props.params.id;
-    //  console.log(productId);
+    // const priceAmount=this.state.productData.prices[this.props.currencyIndex].amount;
+    //  console.log(priceAmount);
 
     const PRODUCT_QUERY = `
 query getproduct($id: String!){
@@ -60,24 +66,36 @@ query getproduct($id: String!){
       .then(res => res.json())
       .then(result => {
         console.log(result)
-        this.setState({ productData: result.data.product })
-        console.log(this.state.productData)
+        this.setState({ productData: result.data.product });
+        const regex = /(<([^>]+)>)/ig
+        const newString=result.data.product.description
+        // console.log(newString);
+        this.setState({description:newString.replace(regex,'')})
+        this.setState({gallery:result.data.product.gallery})
+        this.setState({prices:result.data.product.prices})
+        // console.log(this.state.productData)
         // console.log(this.state.categoryName)
       })
+      
+      // 
+      // this.setState({description:newString});
+  }
+  send=()=>{
+    this.props.ADD(this.state.productData)
   }
 
   render() {
-    console.log(this.state.productData)
-    const regex = /(<([^>]+)>)/ig;
+    // const priceAmount=this.state.prices[this.props.currencyIndex]
+    // console.log(priceAmount)
     // const {id} = this.state.productData[0];
     // console.log(id);
     return (
       <div className='clothcontainer'>
         <div >
-          <img style={{"height":"500px"}}  alt='' ></img>
+          <img style={{"height":"500px","width":"600px"}} src={this.state.gallery[0]}  alt='' ></img>
         </div>
         <div className='detailsgroup'>
-          <div className="nametext">{this.state.productData.brand} </div>
+          {/* <div className="nametext ">{this.state.productData.brand} </div> */}
           <div className='brandtext'>{this.state.productData.name}</div>
           {/* <div className="nametext">Brand: </div>
           <div className='brandtext'>Name: </div> */}
@@ -99,9 +117,11 @@ query getproduct($id: String!){
                                   <div key={index}
                                     style={{
                                       "color": "#FFFFFF",
-                                      "background": `${size.value}`
+                                      "background": `${size.value}`,
+                                      "border": this.state.isActive===size.value ? "1px solid #5ECE7B" : "1px solid #1D1F22"
                                     }}
                                     className='colorarea'
+                                    onClick={() => { this.setState({ isActive: size.value }) }}
                                   ></div>
                                 }
                               </div>
@@ -131,16 +151,20 @@ query getproduct($id: String!){
               }))
             }
           </div>
-          <div className='pricetext'>Price</div>
+          <div className='pricetext'>Price: </div>
           <div className='totalprice'>$50</div>
-          <div className='descriptiontext' >{this.state.productData.description}</div>
-          <div><button className='cartbutton'>Add to Cart</button></div>
-          
+          <div><button className='cartbutton' onClick={()=>this.send()}>Add to Cart</button></div>
+          <div className='descriptiontext' >{this.state.description}</div>
         </div>
       </div>
 
     )
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    currencyIndex: state.cartreducer.priceIndex
+  }
+}
 
-export default withParams(ClothDetails)
+export default  connect(mapStateToProps, { ADD })(withParams(ClothDetails))

@@ -1,6 +1,7 @@
 .product{
     width: 386px;
 height: 444px;
+padding: 16px;
 background: #FFFFFF;
     box-shadow: 5px solid rgb(24, 23, 23);
 }
@@ -9,6 +10,26 @@ img{
     width: 356px;
 height: 338px;
 margin-inline: auto;
+}
+.productname{
+    font-family: 'Raleway';
+font-style: normal;
+font-size: 18px;
+
+display: flex;
+align-items: center;
+
+/* --c-black */
+
+color: #1D1F22;
+}
+.pricearea{
+    font-family: 'Raleway';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+
+color: #1D1F22;
 }
 .textarea{
     width: 354px;
