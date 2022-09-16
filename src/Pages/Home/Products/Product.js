@@ -75,7 +75,7 @@ import {withParams} from '../../customhook/HOC'
     return (
       <div>
         {/* <div>Name: {name} </div> */}
-        <div style={{"marginLeft":"101px"}}>Name : {this.props.params.nameId}</div>
+        <div className='categoryName' >Category Name: {this.props.params.nameId}</div>
         <div className='products'>
         {
             this.state.category.map((cloth,index)=>{
