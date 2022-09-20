@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Cloth from './Cloth'
 import './Product.css'
 import {withParams} from '../../customhook/HOC'
+import Cart from '../../Cart/Cart'
 
 
 

@@ -12,15 +12,15 @@ class Cart extends Component {
     state = {
         cart: [],
         currencyIndex: null,
-        totalPrice:0
+        totalPrice: 0
     }
 
-    
-    
-    add=(ele)=>{
+
+
+    add = (ele) => {
         this.props.ADD(ele);
     }
-    remove=(ele)=>{
+    remove = (ele) => {
         this.props.REMOVE(ele)
     }
 
@@ -29,7 +29,7 @@ class Cart extends Component {
         // console.log(this.props.getdata)
         console.log(this.props.cart)
         return (
-            <div className='cartcontainer'>
+            <div >
 
                 {
                     this.props.cart.length ?
@@ -64,14 +64,14 @@ class Cart extends Component {
                                                             </div>
                                                         </div>
                                                         <div className='buttonarea'>
-                                                            <div onClick={()=>this.add(element)}><img className='plusclass' src={plus} alt="" /></div>
+                                                            <div onClick={() => this.add(element)}><img className='plusclass' src={plus} alt="" /></div>
                                                             <div>{element.qnty}</div>
-                                                            <div onClick={()=>this.remove(element)}><img className='plusclass' src={minus} alt="" /></div>
+                                                            <div onClick={() => this.remove(element)}><img className='plusclass' src={minus} alt="" /></div>
                                                         </div>
 
                                                     </div>
                                                     <div  >
-                                                        <img className='imagecontainer' src={element.gallery[0]} alt="" />
+                                                        <img className='imagediv' src={element.gallery[0]} alt="" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -85,15 +85,15 @@ class Cart extends Component {
                                 <div> Total </div>
                                 <div> Price </div>
                             </div>
-
+                            <div className='buttoncontainer'>
+                                <NavLink className='bagbutton' to={`/cart`}>View Bag</NavLink>
+                                <NavLink className='checkoutbutton' to={`/cart`}>Checkout</NavLink>
+                            </div>
                         </div>
                         :
                         <div>Cart is empty</div>
                 }
-                <div className='buttoncontainer'>
-                    <NavLink className='bagbutton' to={`/cart`}>View Bag</NavLink>
-                    <NavLink className='checkoutbutton' to={`/cart`}>Checkout</NavLink>
-                </div>
+
             </div>
         )
     }
@@ -106,4 +106,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps,{ADD,REMOVE})(Cart);
+export default connect(mapStateToProps, { ADD, REMOVE })(Cart);
