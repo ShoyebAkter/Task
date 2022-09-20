@@ -2,7 +2,8 @@
 .clothcontainer{
     width: 1002px;
 height: 595px;
-margin-inline: 219px;
+margin-left: 96px;
+margin-right: 19px;
 display: flex;
 justify-content: space-between;
 }
@@ -10,6 +11,7 @@ justify-content: space-between;
 .detailsgroup{
     width: 292px;
 height: 595px;
+margin-left: 50px;
 }
 .nametext{
     width: 292px;

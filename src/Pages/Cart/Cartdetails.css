@@ -31,10 +31,28 @@ color: #1D1F22;
    width: 200px;
    height: 288px;
 }
+.carttext{
+    font-family: 'Raleway';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 40px;
+margin-bottom: 55px;
+/* identical to box height, or 125% */
+
+text-transform: uppercase;
+
+color: #1D1F22;
+}
 .container{
     display: flex;
     height: 288px;
     margin-bottom: 25px;
+}
+.line{
+    height: 1px;
+    background: #E5E5E5;
+    margin-bottom: 12px;  
 }
 .details{
     width:950px;

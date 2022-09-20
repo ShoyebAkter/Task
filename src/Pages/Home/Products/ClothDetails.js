@@ -16,6 +16,7 @@ class ClothDetails extends Component {
     gallery:[],
     prices:[],
     symbol:"",
+    galleryIndex:0
   };
 
   componentDidMount() {
@@ -91,8 +92,20 @@ query getproduct($id: String!){
     // console.log(id);
     return (
       <div className='clothcontainer'>
+        <div>
+          {
+            this.state.gallery.map((singlepic,index)=>{
+              return(
+                <img key={index}
+                onClick={()=>this.setState({galleryIndex:index})}
+                 style={{"width":"79px","height":"80px","marginBottom":"32px","border":"1px solid black","cursor":"pointer"}}
+                  src={singlepic} alt=""/>
+              )
+            })
+          }
+        </div>
         <div >
-          <img style={{"height":"500px","width":"600px"}} src={this.state.gallery[0]}  alt='' ></img>
+          <img style={{"height":"500px","width":"600px","marginInline":"50px"}} src={this.state.gallery[this.state.galleryIndex]}  alt='' ></img>
         </div>
         <div className='detailsgroup'>
           {/* <div className="nametext ">{this.state.productData.brand} </div> */}

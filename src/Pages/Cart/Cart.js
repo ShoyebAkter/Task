@@ -47,7 +47,9 @@ class Cart extends Component {
                                                         <div className='itemtext'>
                                                             <div className='nameprice'>
                                                                 <div className='productname'>{element.name}</div>
-                                                                <div className='productprice'>{element.prices[this.props.currencyIndex].amount}</div>
+                                                                <div className='productprice'>
+                                                                {element.prices[this.props.currencyIndex].currency.symbol}
+                                                                    {element.prices[this.props.currencyIndex].amount}</div>
                                                             </div>
                                                             <div className='title'>{element.attributes[0].name}:
                                                                 <div className='sizeframe'>

@@ -3,20 +3,20 @@ import { connect } from 'react-redux'
 import './Cartdetails.css'
 import plus from '../../assets/plus-square2.png'
 import minus from '../../assets/minus-square2.png'
-import {ADD,REMOVE} from '../../redux/action/action'
+import { ADD, REMOVE } from '../../redux/action/action'
 
 class CartDetails extends Component {
   state = {
     cartDetails: [],
     currencyIndex: null,
     isActive: null,
-    total:0
+    total: 0
   }
 
-  add=(ele)=>{
+  add = (ele) => {
     this.props.ADD(ele);
   }
-  remove=(ele)=>{
+  remove = (ele) => {
     this.props.REMOVE(ele)
   }
 
@@ -25,86 +25,95 @@ class CartDetails extends Component {
     console.log(this.state.cartDetails)
     return (
       <div className='cartcontainer'>
+        <div className='carttext'>Cart</div>
         {
           this.props.cartDetails.map((product, index) => {
             return (
-              <div className='container'>
-                <div className='detailscontainer'>
-                  <div className='details'>
-                    <div className='nametag'>{product.name}</div>
-                    <div className='pricetag'>{product.prices[this.props.currencyIndex].currency.symbol} {product.prices[this.props.currencyIndex].amount}</div>
-                    <div >
-                      {
-                        product.attributes.map((attribute => {
-                          return (
-                            <div>
-                              <div className='sizetext'>{attribute.name}:</div>
-                              <div className='valuetag'>
+              <div>
+                <div className='line'></div>
+                <div className='container'>
 
-                                {
-                                  attribute.type === "swatch" ?
-                                    attribute.items.map((size, index) => {
-                                      console.log(size.value);
-                                      return (
-                                        <div>
-                                          {
-                                            <div key={index}
-                                              style={{
-                                                "color": "#FFFFFF",
-                                                "background": `${size.value}`
-                                              }}
-                                              className='colorarea'
-                                            ></div>
-                                          }
-                                        </div>
-                                      )
-                                    }) :
-                                    attribute.items.map((size, index) => {
-                                      console.log(size.value);
-                                      return (
-                                        <div>
-                                          {
-                                            <div key={index}
-                                              style={{
-                                                "background": this.state.isActive === size.value ? "#1D1F22" : "",
-                                                "color": this.state.isActive === size.value && "#FFFFFF",
-                                              }}
-                                              className='valuearea'
-                                              onClick={() => { this.setState({ isActive: size.value }) }}
-                                            >{size.value}</div>
-                                          }
-                                        </div>
-                                      )
-                                    })
-                                }
+                  <div className='detailscontainer'>
+                    <div className='details'>
+                      <div className='nametag'>{product.name}</div>
+                      <div className='pricetag'>{product.prices[this.props.currencyIndex].currency.symbol} {product.prices[this.props.currencyIndex].amount}</div>
+                      <div >
+                        {
+                          product.attributes.map((attribute => {
+                            return (
+                              <div>
+                                <div className='sizetext'>{attribute.name}:</div>
+                                <div className='valuetag'>
+
+                                  {
+                                    attribute.type === "swatch" ?
+                                      attribute.items.map((size, index) => {
+                                        console.log(size.value);
+                                        return (
+                                          <div>
+                                            {
+                                              <div key={index}
+                                                style={{
+                                                  "color": "#FFFFFF",
+                                                  "background": `${size.value}`
+                                                }}
+                                                className='colorarea'
+                                              ></div>
+                                            }
+                                          </div>
+                                        )
+                                      }) :
+                                      attribute.items.map((size, index) => {
+                                        console.log(size.value);
+                                        return (
+                                          <div>
+                                            {
+                                              <div key={index}
+                                                style={{
+                                                  "background": this.state.isActive === size.value ? "#1D1F22" : "",
+                                                  "color": this.state.isActive === size.value && "#FFFFFF",
+                                                }}
+                                                className='valuearea'
+                                                onClick={() => { this.setState({ isActive: size.value }) }}
+                                              >{size.value}</div>
+                                            }
+                                          </div>
+                                        )
+                                      })
+                                  }
+                                </div>
                               </div>
-                            </div>
-                          )
-                        }))
-                      }
+                            )
+                          }))
+                        }
+                      </div>
+                    </div>
+                    <div className='buttongroup'>
+                      <div onClick={() => this.add(product)}><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22", "cursor": "pointer" }} src={plus} alt="" /></div>
+                      <div>{product.qnty}</div>
+                      <div onClick={() => this.remove(product)}><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22", "cursor": "pointer" }} src={minus} alt="" /></div>
                     </div>
                   </div>
-                  <div className='buttongroup'>
-                    <div onClick={()=>this.add(product)}><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22","cursor":"pointer" }} src={plus} alt="" /></div>
-                    <div>{product.qnty}</div>
-                    <div onClick={()=>this.remove(product)}><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22","cursor":"pointer" }} src={minus} alt="" /></div>
+                  <div style={{ "margin-left": "24px" }} className='imagecontainer' >
+                    <img style={{ "width": "200px", "height": "288px" }} src={product.gallery[0]} alt='' />
                   </div>
-                </div>
-                <div style={{ "margin-left": "24px" }} className='imagecontainer' >
-                  <img style={{ "width": "200px", "height": "288px" }} src={product.gallery[0]} alt='' />
                 </div>
               </div>
             )
           })
         }
-        <div className='totalarea'>
-          <div className='taxarea'>
-            <div >Tax 21% : $42</div>
-            <div>Quantity : 3</div>
-            <div>Total: 200</div>
-          </div>
-          <div className='orderbutton'>
-            <div className='ordertext'>Order</div>
+        <div>
+          <div className='line'></div>
+          <div className='totalarea'>
+
+            <div className='taxarea'>
+              <div >Tax 21% : $42</div>
+              <div>Quantity : 3</div>
+              <div>Total: 200</div>
+            </div>
+            <div className='orderbutton'>
+              <div className='ordertext'>Order</div>
+            </div>
           </div>
         </div>
       </div>
@@ -120,4 +129,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps,{ADD,REMOVE})(CartDetails)
+export default connect(mapStateToProps, { ADD, REMOVE })(CartDetails)
