@@ -31,8 +31,6 @@ class Cart extends Component {
         return (
             <div >
 
-                {
-                    this.props.cart.length ?
                         <div className='itemcontainer' >
                             <div className='totalitem'>My Bag: {this.props.cart.length}items</div>
                             <div className='itembox'>
@@ -92,9 +90,6 @@ class Cart extends Component {
                                 <NavLink className='checkoutbutton' to={`/cart`}>Checkout</NavLink>
                             </div>
                         </div>
-                        :
-                        <div>Cart is empty</div>
-                }
 
             </div>
         )

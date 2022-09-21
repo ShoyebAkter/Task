@@ -8,23 +8,51 @@ import headerIcon from '../../assets/VSF.png'
 import currencyIcon from '../../assets/currency.png'
 import Product from './Products/Product'
 import cart from '../../assets/cart.png'
+import { connect } from 'react-redux'
 
-export default class Header extends Component {
+class Header extends Component {
 
     state = {
+        currencies: [],
+        currencyIndex: 0,
         categories: [],
         price: null,
         showCart: false,
-        showCurrency: false
+        showCurrency: false,
+        currency: ""
     }
     componentDidMount() {
-        this.fetchCategories()
+        this.fetchCategories();
+        this.fetchCurrency()
         // this.changeCurrency()
     }
 
+    fetchCurrency() {
+        const CURRENCY_QUERY = {
+            query: `
+            query{
+            currencies{
+            label,
+            symbol
+                }
+            }`
+        }
 
+        fetch('http://localhost:4000/', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(CURRENCY_QUERY)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+                this.setState({ currencies: result.data.currencies })
+                // console.log(this.state.currencies)
+            })
+    }
 
     fetchCategories() {
+        
         const CATEGORY_QUERY = {
             query: `
             query{
@@ -51,10 +79,13 @@ export default class Header extends Component {
     }
 
     render() {
-        // console.log(this.props)
-        const showHideClassName = this.state.showCart ? "modal display-block" : "modal display-none"
+        
+        let currencySymbol=this.state.currencies[this.props.currencyIndex]
+        const showHideClassName = (this.state.showCart  ) ? "modal display-block" : "modal display-none"
+        const showHideCurrencyClassName = this.state.showCurrency ? "modalCurrency display-block" : "modalCurrency display-none"
+        console.log(currencySymbol)
         return (
-            <div>
+            <div >
                 <div class="topnav" id="myTopnav">
                     <div class="navsection">
                         {
@@ -71,31 +102,31 @@ export default class Header extends Component {
                     </div>
                     <div className='actionbox'>
                         {
-                            <div>
-                                {/* <button onClick={() => this.setState({ showCurrency: !this.state.showCurrency })} style={{ "background": "#FFFFFF", "border": "none", "cursor": "pointer" }}>
-                                <img style={{ "height": "29px", "width": "32px" }} src={currencyIcon} alt='' />
-                            </button> */}
-                                {/* <div  >
-                                {
-                                    this.state.showCurrency &&
-
+                            <div style={{'width':"38px"}}>
+                                <div>
+                                <button className='currencyAction' onClick={() => this.setState({ showCurrency: !this.state.showCurrency })}>
+                                    {this.state.currencies[this.props.currencyIndex]?.symbol}
+                                </button>
+                                <img style={{"width":"6px","height":"3px"}} src={currencyIcon} alt=""/>
+                                </div>
+                                <div className={showHideCurrencyClassName} >
+                                    <section className="Currencymodal-main">
                                     <Currencies changeCurrency={this.props.changeCurrency} />
-
-                                }
-                            </div> */}
+                                    </section>
+                                </div>
 
 
                             </div>
                         }
                         <div >
-                            <button onClick={() => this.setState({ showCart: !this.state.showCart })} style={{ "background": "#FFFFFF", "border": "none","cursor":"pointer" }} >
+                            <button onClick={() => this.setState({ showCart: !this.state.showCart })} style={{ "background": "#FFFFFF", "border": "none", "cursor": "pointer" }} >
                                 <img style={{ "height": "20px", "width": "25px" }} src={cartImage} alt="" />
                                 {/* currency */}
                             </button>
                             <div className={showHideClassName}>
                                 <section className="modal-main">
-                                    <Cart/>
-                                    
+                                    <Cart />
+
                                 </section>
                             </div>
 
@@ -119,3 +150,10 @@ export default class Header extends Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        currencyIndex: state.cartreducer.priceIndex
+    }
+}
+
+export default connect(mapStateToProps)(Header)

@@ -1,11 +1,17 @@
 .currencycontainer{
     padding-top:20px;
-    background-color: #EEEEEE
+    background: #FFFFFF;
 }
 .singlecurrency{
     width: 114px;
 height: 45px;
 cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.singlecurrency:active{
+    background: #EEEEEE;
 }
 .currencyText{
     font-family: 'Raleway';

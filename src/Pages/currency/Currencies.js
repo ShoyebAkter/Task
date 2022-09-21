@@ -9,7 +9,8 @@ import './Currencies.css'
 class Currencies extends Component {
 
     state={
-        currencies: []
+        currencies: [],
+        selected:false
     }
 
     componentDidMount() {    
@@ -46,14 +47,20 @@ class Currencies extends Component {
             })
     }
     
+    
     render() {
+        // const selectedBackground=
         return (
             <div className='currencycontainer' >
                 {
                     this.state.currencies.map((currency,index)=>{
                         return(
                             <div className='singlecurrency'>
-                                <div className='currencyText' onClick={()=>this.newIndex(index)}>{currency.label}</div>
+                                <div className='currencyText'
+                                 onClick={()=>
+                                    this.newIndex(index)
+                                }
+                                 >{currency.symbol} {currency.label}</div>
                             </div>
                         )
                     })

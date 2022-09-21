@@ -8,7 +8,7 @@ import { Component } from 'react';
 
 export default class App extends Component {
  state={
-  priceIndex: null
+  priceIndex: 0
  }
 
  changeCurrency=(index)=>{
@@ -20,7 +20,7 @@ export default class App extends Component {
  render(){
   return (
     <>
-    <Header changeCurrency={this.changeCurrency}/>
+    <Header  changeCurrency={this.changeCurrency}/>
     <Routes>
      <Route path='/product/:id' element={<ClothDetails  />} />
      <Route path='/:nameId' element={<Product/>}/>
