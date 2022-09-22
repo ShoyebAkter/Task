@@ -136,7 +136,6 @@ font-size: 24px;
 line-height: 28px;
 gap: 8px;
 
-width: 198px;
 height: 100px;
 
 color: #1D1F22;
@@ -149,7 +148,6 @@ padding: 0px;
 gap: 16px;
 
 position: absolute;
-width: 279px;
 height: 159px;
 }
 .orderbutton{

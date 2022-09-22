@@ -85,7 +85,7 @@ class Header extends Component {
         const showHideCurrencyClassName = this.state.showCurrency ? "modalCurrency display-block" : "modalCurrency display-none"
         console.log(currencySymbol)
         return (
-            <div >
+            <div style={{"zIndex":"1"}}>
                 <div class="topnav" id="myTopnav">
                     <div class="navsection">
                         {

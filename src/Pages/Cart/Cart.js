@@ -15,8 +15,6 @@ class Cart extends Component {
         totalPrice: 0
     }
 
-
-
     add = (ele) => {
         this.props.ADD(ele);
     }
@@ -25,10 +23,13 @@ class Cart extends Component {
     }
 
     render() {
+        let total=0;
+        let symbol;
         // console.log(this.state.totalPrice);
         // console.log(this.props.getdata)
         console.log(this.props.cart)
         return (
+            
             <div >
 
                         <div className='itemcontainer' >
@@ -36,6 +37,9 @@ class Cart extends Component {
                             <div className='itembox'>
                                 {
                                     this.props.cart.map((element => {
+                                        total=total+element.prices[this.props.currencyIndex].amount*element.qnty;
+                                        symbol=element.prices[this.props.currencyIndex].currency.symbol;
+                                        console.log(total);
                                         return (
                                             <div>
 
@@ -83,7 +87,7 @@ class Cart extends Component {
                             </div>
                             <div className='total'>
                                 <div> Total </div>
-                                <div> Price </div>
+                                <div>{symbol} {total} </div>
                             </div>
                             <div className='buttoncontainer'>
                                 <NavLink className='bagbutton' to={`/cart`}>View Bag</NavLink>

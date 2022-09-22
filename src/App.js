@@ -19,14 +19,14 @@ export default class App extends Component {
 
  render(){
   return (
-    <>
+    <div >
     <Header  changeCurrency={this.changeCurrency}/>
     <Routes>
      <Route path='/product/:id' element={<ClothDetails  />} />
      <Route path='/:nameId' element={<Product/>}/>
      <Route path='/cart' element={<CartDetails />}/>
    </Routes>
-    </>
+    </div>
   );
  }
 }

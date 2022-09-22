@@ -20,11 +20,6 @@ class Cloth extends Component {
 
   send = (ele) => {
     this.props.ADD(ele)
-    // console.log(ele.prices[this.props.currencyIndex].amount);
-    // console.log(ele);
-    // let totalPrice=ele.qnty*ele.prices[this.props.currencyIndex].amount;
-    // console.log(totalPrice);
-    // this.setState({total:totalPrice})
   }
   render() {
     // console.log(this.state.total)

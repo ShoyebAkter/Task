@@ -22,14 +22,22 @@ class CartDetails extends Component {
 
 
   render() {
+    let total=0;
+    let quantity=0;
+    let symbol;
+    let tax;
     console.log(this.state.cartDetails)
     return (
       <div className='cartcontainer'>
         <div className='carttext'>Cart</div>
         {
           this.props.cartDetails.map((product, index) => {
+            quantity=quantity+product.qnty;
+            total=total+product.prices[this.props.currencyIndex].amount*product.qnty;
+            symbol=product.prices[this.props.currencyIndex].currency.symbol;
+            tax=0.21*total;
             return (
-              <div>
+              <div key={index}>
                 <div className='line'></div>
                 <div className='container'>
 
@@ -107,9 +115,9 @@ class CartDetails extends Component {
           <div className='totalarea'>
 
             <div className='taxarea'>
-              <div >Tax 21% : $42</div>
-              <div>Quantity : 3</div>
-              <div>Total: 200</div>
+              <div >Tax 21% : {symbol}{tax}</div>
+              <div>Quantity : {quantity}</div>
+              <div>Total: {symbol} {total}</div>
             </div>
             <div className='orderbutton'>
               <div className='ordertext'>Order</div>
