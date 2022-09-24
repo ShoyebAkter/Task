@@ -4,7 +4,6 @@ import Cart from '../Cart/Cart'
 import Currencies from '../currency/Currencies'
 import './Header.css'
 import cartImage from '../../assets/Vector.png'
-import {CHANGECATEGORY} from '../../redux/action/action'
 import headerIcon from '../../assets/VSF.png'
 import currencyIcon from '../../assets/currency.png'
 import Product from './Products/Product'
@@ -160,4 +159,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps,{CHANGECATEGORY})(Header)
+export default connect(mapStateToProps)(Header)

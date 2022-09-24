@@ -20,6 +20,11 @@ import Cart from '../../Cart/Cart'
       // console.log(this.props.params.nameId)
       
     }
+    componentDidUpdate(prevProps) {
+      if (prevProps.params.nameId !== this.props.params.nameId) {
+        window.location.reload()
+      }
+    }
     
     async fetchCategory(name){
       const CATEGORY_QUERY= `       
