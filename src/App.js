@@ -5,22 +5,15 @@ import ClothDetails from './Pages/Home/Products/ClothDetails';
 import CartDetails from './Pages/Cart/CartDetails';
 import Header from './Pages/Home/Header';
 import { Component } from 'react';
+import Home from './Pages/Home/Home';
 
 export default class App extends Component {
- state={
-  priceIndex: 0
- }
-
- changeCurrency=(index)=>{
-  // this.setState({ priceIndex: index})
-  // console.log(this.state.priceIndex)
-  console.log(index)
-}
+ 
 
  render(){
   return (
     <div >
-    <Header  changeCurrency={this.changeCurrency}/>
+    <Header />
     <Routes>
      <Route path='/product/:id' element={<ClothDetails  />} />
      <Route path='/:nameId' element={<Product/>}/>

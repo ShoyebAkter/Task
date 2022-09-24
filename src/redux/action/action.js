@@ -10,6 +10,13 @@ export const DLT=(id)=>{
         payload:id
     }
 }
+export const DLTONE=(id)=>{
+    return{
+        type: "DLT_ONE",
+        payload:id
+    }
+}
+
 
 export const REMOVE = (iteam) => {
     return {

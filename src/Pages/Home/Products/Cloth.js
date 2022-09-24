@@ -3,7 +3,7 @@ import { ADD } from '../../../redux/action/action'
 import './Cloth.css'
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
-import Cartbutton from '../../../assets/Icon/Vector@2x.png'
+import Cartbutton from '../../../assets/Empty Cart.png'
 
 class Cloth extends Component {
   constructor(props) {

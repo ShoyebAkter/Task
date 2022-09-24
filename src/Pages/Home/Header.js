@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import Cart from '../Cart/Cart'
 import Currencies from '../currency/Currencies'
 import './Header.css'
 import cartImage from '../../assets/Vector.png'
+import {CHANGECATEGORY} from '../../redux/action/action'
 import headerIcon from '../../assets/VSF.png'
 import currencyIcon from '../../assets/currency.png'
 import Product from './Products/Product'
@@ -90,6 +91,8 @@ class Header extends Component {
             })
     }
 
+    
+
     render() {
         
         let currencySymbol=this.state.currencies[this.props.currencyIndex]
@@ -104,7 +107,7 @@ class Header extends Component {
                             this.state.categories.map(category => {
                                 const nameId = category.name;
                                 return (
-                                    <NavLink className="linkText" to={`/${nameId}`} >{nameId}</NavLink>
+                                    <Link  className="linkText" to={`/${nameId}`} >{nameId}</Link>
                                 )
                             })
                         }
@@ -157,4 +160,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps,{CHANGECATEGORY})(Header)

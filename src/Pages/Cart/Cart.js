@@ -4,6 +4,8 @@ import { connect } from 'react-redux/es/exports'
 
 import { REMOVE } from '../../redux/action/action'
 import { ADD } from '../../redux/action/action'
+import { DLT } from '../../redux/action/action'
+import { DLTONE } from '../../redux/action/action'
 import './Cart.css'
 import plus from '../../assets/plus-square.png'
 import minus from '../../assets/minus-square.png'
@@ -21,12 +23,18 @@ class Cart extends Component {
     remove = (ele) => {
         this.props.REMOVE(ele)
     }
+    delete=()=>{
+        this.props.DLT() 
+    }
+    deleteOne=(id)=>{
+        this.props.DLTONE(id)
+    }
 
     render() {
         let total=0;
         let symbol;
         // console.log(this.state.totalPrice);
-        // console.log(this.props.getdata)
+        console.log(this.state.cart)
         console.log(this.props.cart)
         return (
             
@@ -70,7 +78,7 @@ class Cart extends Component {
                                                         <div className='buttonarea'>
                                                             <div onClick={() => this.add(element)}><img className='plusclass' src={plus} alt="" /></div>
                                                             <div>{element.qnty}</div>
-                                                            <div onClick={() => this.remove(element)}><img className='plusclass' src={minus} alt="" /></div>
+                                                            <div onClick={element.qnty<=1?()=>this.deleteOne(element.id):() => this.remove(element)}><img className='plusclass' src={minus} alt="" /></div>
                                                         </div>
 
                                                     </div>
@@ -91,7 +99,7 @@ class Cart extends Component {
                             </div>
                             <div className='buttoncontainer'>
                                 <NavLink className='bagbutton' to={`/cart`}>View Bag</NavLink>
-                                <NavLink className='checkoutbutton' to={`/cart`}>Checkout</NavLink>
+                                <div onClick={()=>this.delete()} className='checkoutbutton' >Checkout</div>
                             </div>
                         </div>
 
@@ -107,4 +115,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { ADD, REMOVE })(Cart);
+export default connect(mapStateToProps, { ADD, REMOVE,DLT,DLTONE })(Cart);

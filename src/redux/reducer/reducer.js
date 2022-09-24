@@ -1,7 +1,8 @@
 const INIT_STATE = {
     carts: [],
     priceIndex:0,
-    total:0
+    total:0,
+    category:""
 };
 
 
@@ -26,29 +27,37 @@ export const cartreducer = (state = INIT_STATE, action) => {
             }
         }
 
-           
-
-        case "RMV_CART":
-            const data = state.carts.filter((el)=>el.id !== action.payload); 
-            // console.log(data);
+        case "DLT_ONE":
+            const data = state.carts.filter((el)=>el.id !== action.payload);
 
             return {
                 ...state,
                 carts:data
             }
 
+        case "DLT_CART":
+            const emptyData =[]; 
+            // console.log(data);
+
+            return {
+                ...state,
+                carts:emptyData
+            }
+
         case "RMV_ONE":
-            const IteamIndex_dec = state.carts.findIndex((iteam)=> iteam.id === action.payload.id);
+            const ItemIndex_dec = state.carts.findIndex((iteam)=> iteam.id === action.payload.id);
    
-            if(state.carts[IteamIndex_dec].qnty >= 1){
-                const dltiteams = state.carts[IteamIndex_dec].qnty -= 1
-                console.log([...state.carts,dltiteams]);
+            if(state.carts[ItemIndex_dec].qnty >= 1){
+                const dltitems = state.carts[ItemIndex_dec].qnty -= 1
+                
+                // console.log("redux",[...state.carts,dltiteams]);
 
                 return {
                     ...state,
                     carts:[...state.carts]
                 }
-            }else{
+            }
+            else if(state.carts[ItemIndex_dec].qnty===1){
                 const data = state.carts.filter((el)=>el.id !== action.payload);
 
                 return {
@@ -63,7 +72,8 @@ export const cartreducer = (state = INIT_STATE, action) => {
                 ...state,
                 priceIndex:newIndex
             }
-            
+
+        
               
         default:
             return state

@@ -15,6 +15,7 @@ import Cart from '../../Cart/Cart'
 
     componentDidMount=()=>{
       const name=this.props.params.nameId;
+      
       this.fetchCategory(name)
       // console.log(this.props.params.nameId)
       
@@ -83,7 +84,6 @@ import Cart from '../../Cart/Cart'
             this.state.category.map((cloth,index)=>{
                 return(
                     <Cloth
-                    
                     key={index}
                     cloth={cloth}
                     />
@@ -96,4 +96,5 @@ import Cart from '../../Cart/Cart'
     )
   }
 }
+
 export default withParams(Product)
