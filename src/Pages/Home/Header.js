@@ -17,15 +17,27 @@ class Header extends Component {
         currencyIndex: 0,
         categories: [],
         price: null,
-        showCart: false,
+        showCart:false,
         showCurrency: false,
         currency: ""
     }
     componentDidMount() {
         this.fetchCategories();
         this.fetchCurrency()
+        
         // this.changeCurrency()
     }
+    
+
+      removeScroll(){
+        this.setState({ showCart: !this.state.showCart })
+        if(this.state.showCart){
+            document.body.style.overflow = ' unset';
+          }
+          else{
+            document.body.style.overflow = 'hidden'
+          }
+      }
 
     fetchCurrency() {
         const CURRENCY_QUERY = {
@@ -81,18 +93,18 @@ class Header extends Component {
     render() {
         
         let currencySymbol=this.state.currencies[this.props.currencyIndex]
-        const showHideClassName = (this.state.showCart  ) ? "modal display-block" : "modal display-none"
-        const showHideCurrencyClassName = this.state.showCurrency ? "modalCurrency display-block" : "modalCurrency display-none"
+        const showHideClassName = (this.state.showCart  ) ? "modal display-block " : "modal display-none"
+        const showHideCurrencyClassName = this.state.showCurrency ? "modalCurrency display-block " : "modalCurrency display-none"
         console.log(currencySymbol)
         return (
-            <div style={{"zIndex":"1"}}>
+            <body>
                 <div class="topnav" id="myTopnav">
                     <div class="navsection">
                         {
                             this.state.categories.map(category => {
                                 const nameId = category.name;
                                 return (
-                                    <NavLink className="linkText" to={`/${nameId}`}>{nameId}</NavLink>
+                                    <NavLink className="linkText" to={`/${nameId}`} >{nameId}</NavLink>
                                 )
                             })
                         }
@@ -119,39 +131,28 @@ class Header extends Component {
                             </div>
                         }
                         <div >
-                            <button onClick={() => this.setState({ showCart: !this.state.showCart })} style={{ "background": "#FFFFFF", "border": "none", "cursor": "pointer" }} >
+                            <button onClick={() => this.removeScroll()} style={{ "background": "#FFFFFF", "border": "none", "cursor": "pointer" }} >
                                 <img style={{ "height": "20px", "width": "25px" }} src={cartImage} alt="" />
-                                {/* currency */}
+                                <span class="icon-button__badge">{this.props.cart.length}</span>
                             </button>
                             <div className={showHideClassName}>
                                 <section className="modal-main">
                                     <Cart />
-
+                                    
                                 </section>
                             </div>
-
-                            {/* <button className='dropbtn'>Cart
-                        </button>
-                        <div class="dropdown-content">
-                            <Cart />
-                        </div> */}
                         </div>
 
                     </div>
 
                 </div>
-                {/* {
-                this.state.showCurrency &&
-                <div style={{"background": "rgba(57, 55, 72, 0.22)","height":"100%","height": "1435px"}}>
-                    My currency
-                </div>
-            } */}
-            </div>
+            </body>
         )
     }
 }
 const mapStateToProps = (state) => {
     return {
+        cart: state.cartreducer.carts,
         currencyIndex: state.cartreducer.priceIndex
     }
 }

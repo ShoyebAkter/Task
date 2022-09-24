@@ -9,18 +9,18 @@ import Cart from '../../Cart/Cart'
  class Product extends Component {
 
   state={
-    category: []
+    category: [],
+    categoryName:""
   }
 
-    componentDidMount(){
-      this.fetchCategory()
-      console.log(this.props)
+    componentDidMount=()=>{
+      const name=this.props.params.nameId;
+      this.fetchCategory(name)
       // console.log(this.props.params.nameId)
       
     }
-
-    async fetchCategory(){
-      const name=this.props.params.nameId;
+    
+    async fetchCategory(name){
       const CATEGORY_QUERY= `       
         query getcategory($title: String!){
   category(input: {title: $title}){
@@ -56,7 +56,7 @@ import Cart from '../../Cart/Cart'
         `
 
       
-      fetch('http://localhost:4000/',{
+      await fetch('http://localhost:4000/',{
         method: "POST",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify({query:CATEGORY_QUERY,variables:{title: name}})
@@ -64,15 +64,16 @@ import Cart from '../../Cart/Cart'
       .then(res=> res.json())
       .then(result=>
         {
+          
           this.setState({category: result.data.category.products})
-          console.log(this.state.category)
+          console.log(result)
           // console.log(this.state.categoryName)
+          
         })
     }
   render()
   {
-    console.log(this.state.category);
-    // const { name } = this.props.match.params['name'];
+    console.log(this.props);
     return (
       <div>
         {/* <div>Name: {name} </div> */}
