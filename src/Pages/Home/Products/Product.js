@@ -10,7 +10,8 @@ import Cart from '../../Cart/Cart'
 
   state={
     category: [],
-    categoryName:""
+    categoryName:"",
+    isLoading:false
   }
 
     componentDidMount=()=>{
@@ -22,7 +23,7 @@ import Cart from '../../Cart/Cart'
     }
     componentDidUpdate(prevProps) {
       if (prevProps.params.nameId !== this.props.params.nameId) {
-        window.location.reload()
+        this.fetchCategory(this.props.params.nameId)
       }
     }
     
@@ -60,7 +61,7 @@ import Cart from '../../Cart/Cart'
 }
 }
         `
-
+      this.setState({isLoading:true});
       
       await fetch('http://localhost:4000/',{
         method: "POST",
@@ -73,6 +74,7 @@ import Cart from '../../Cart/Cart'
           
           this.setState({category: result.data.category.products})
           console.log(result)
+          this.setState({isLoading:false})
           // console.log(this.state.categoryName)
           
         })
@@ -81,6 +83,9 @@ import Cart from '../../Cart/Cart'
   {
     console.log(this.props);
     return (
+      this.state.isLoading ?
+      <div>Loading.....</div>
+      :
       <div>
         {/* <div>Name: {name} </div> */}
         <div className='categoryName' >Category Name: {this.props.params.nameId}</div>

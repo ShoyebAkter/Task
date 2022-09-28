@@ -6,6 +6,7 @@ import './Header.css'
 import cartImage from '../../assets/Vector.png'
 import headerIcon from '../../assets/VSF.png'
 import currencyIcon from '../../assets/currency.png'
+import {CHANGECATEGORY} from '../../redux/action/action'
 import Product from './Products/Product'
 import cart from '../../assets/cart.png'
 import { connect } from 'react-redux'
@@ -19,7 +20,8 @@ class Header extends Component {
         price: null,
         showCart:false,
         showCurrency: false,
-        currency: ""
+        currency: "",
+        category:""
     }
     componentDidMount() {
         this.fetchCategories();
@@ -28,6 +30,9 @@ class Header extends Component {
         // this.changeCurrency()
     }
     
+    changeCategory=(nameId)=>{
+        this.props.CHANGECATEGORY(nameId)
+    }
 
       removeScroll(){
         this.setState({ showCart: !this.state.showCart })
@@ -106,7 +111,9 @@ class Header extends Component {
                             this.state.categories.map(category => {
                                 const nameId = category.name;
                                 return (
-                                    <Link  className="linkText" to={`/${nameId}`} >{nameId}</Link>
+                                    <Link
+                                    onClick={()=>this.changeCategory(nameId)}
+                                    className="linkText" to={`/${nameId}`} >{nameId}</Link>
                                 )
                             })
                         }
@@ -159,4 +166,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps,{CHANGECATEGORY})(Header)

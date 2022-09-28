@@ -31,3 +31,10 @@ export const CHANGE =(index)=>{
         payload: index
     }
 }
+
+export const CHANGECATEGORY=(nameId)=>{
+    return{
+        type: "CHANGE_CATEGORY",
+        payload:nameId
+    }
+}

@@ -44,6 +44,11 @@ export const cartreducer = (state = INIT_STATE, action) => {
                 carts:emptyData
             }
 
+        case "CHANGE_CATEGORY":
+            return{
+                ...state,
+                category:action.payload
+            }
         case "RMV_ONE":
             const ItemIndex_dec = state.carts.findIndex((iteam)=> iteam.id === action.payload.id);
    
