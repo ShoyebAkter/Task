@@ -54,7 +54,6 @@ class CartDetails extends Component {
                               <div>
                                 <div className='sizetext'>{attribute.name}:</div>
                                 <div className='valuetag'>
-
                                   {
                                     attribute.type === "swatch" ?
                                       attribute.items.map((size, index) => {
@@ -84,7 +83,7 @@ class CartDetails extends Component {
                                                   "color": this.state.isActive === size.value && "#FFFFFF",
                                                 }}
                                                 className='valuearea'
-                                                onClick={() => { this.setState({ isActive: size.value }) }}
+                                                onClick={(e) => { this.setState({ isActive: size.value }) }}
                                               >{size.value}</div>
                                             }
                                           </div>

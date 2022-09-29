@@ -59,7 +59,9 @@ class Cloth extends Component {
             <div className='textarea'>
               <div className='productname'>{this.state.product.name}</div>
 
-              <div className='pricearea'>{this.state.product.prices[this.props.currencyIndex].currency.symbol}{this.state.product.prices[this.props.currencyIndex].amount}</div>
+              <div className='pricearea'>
+                {this.state.product.prices[this.props.currencyIndex].currency.symbol}
+                {this.state.product.prices[this.props.currencyIndex].amount}</div>
 
             </div>
             :

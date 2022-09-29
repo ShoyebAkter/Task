@@ -6,9 +6,10 @@ import './Header.css'
 import cartImage from '../../assets/Vector.png'
 import headerIcon from '../../assets/VSF.png'
 import currencyIcon from '../../assets/currency.png'
-import {CHANGECATEGORY} from '../../redux/action/action'
+import { CHANGECATEGORY } from '../../redux/action/action'
 import Product from './Products/Product'
-import cart from '../../assets/cart.png'
+import dropdown from '../../assets/dropdown.png'
+import up from '../../assets/updown.png'
 import { connect } from 'react-redux'
 
 class Header extends Component {
@@ -18,31 +19,33 @@ class Header extends Component {
         currencyIndex: 0,
         categories: [],
         price: null,
-        showCart:false,
+        showCart: false,
         showCurrency: false,
         currency: "",
-        category:""
+        category: "",
+        active: ""
     }
     componentDidMount() {
         this.fetchCategories();
         this.fetchCurrency()
-        
+
         // this.changeCurrency()
     }
-    
+
     changeCategory=(nameId)=>{
+        this.setState({ active: nameId })
         this.props.CHANGECATEGORY(nameId)
     }
 
-      removeScroll(){
+    removeScroll() {
         this.setState({ showCart: !this.state.showCart })
-        if(this.state.showCart){
+        if (this.state.showCart) {
             document.body.style.overflow = ' unset';
-          }
-          else{
+        }
+        else {
             document.body.style.overflow = 'hidden'
-          }
-      }
+        }
+    }
 
     fetchCurrency() {
         const CURRENCY_QUERY = {
@@ -69,7 +72,7 @@ class Header extends Component {
     }
 
     fetchCategories() {
-        
+
         const CATEGORY_QUERY = {
             query: `
             query{
@@ -95,12 +98,12 @@ class Header extends Component {
             })
     }
 
-    
+
 
     render() {
-        
-        let currencySymbol=this.state.currencies[this.props.currencyIndex]
-        const showHideClassName = (this.state.showCart  ) ? "modal display-block " : "modal display-none"
+
+        let currencySymbol = this.state.currencies[this.props.currencyIndex]
+        const showHideClassName = (this.state.showCart) ? "modal display-block " : "modal display-none"
         const showHideCurrencyClassName = this.state.showCurrency ? "modalCurrency display-block " : "modalCurrency display-none"
         console.log(currencySymbol)
         return (
@@ -112,8 +115,14 @@ class Header extends Component {
                                 const nameId = category.name;
                                 return (
                                     <Link
-                                    onClick={()=>this.changeCategory(nameId)}
-                                    className="linkText" to={`/${nameId}`} >{nameId}</Link>
+                                        style={{
+                                            color: this.state.active === nameId ? "#5ECE7B" : "#1D1F22",
+                                            borderBottom: this.state.active === nameId ? "2px solid #5ECE7B" : ""
+                                        }}
+                                        onClick={() => {
+                                            this.changeCategory(nameId)
+                                        }}
+                                        className="linkText" to={`/${nameId}`} >{nameId}</Link>
                                 )
                             })
                         }
@@ -123,16 +132,21 @@ class Header extends Component {
                     </div>
                     <div className='actionbox'>
                         {
-                            <div style={{'width':"38px"}}>
-                                <div>
-                                <button className='currencyAction' onClick={() => this.setState({ showCurrency: !this.state.showCurrency })}>
-                                    {this.state.currencies[this.props.currencyIndex]?.symbol}
-                                </button>
-                                <img style={{"width":"6px","height":"3px"}} src={currencyIcon} alt=""/>
+                            <div style={{ 'width': "38px" }}>
+                                <div style={{"display":"flex","alignItems":"center"}}>
+                                    <button className='currencyAction' onClick={() => this.setState({ showCurrency: !this.state.showCurrency })}>
+                                        {this.state.currencies[this.props.currencyIndex]?.symbol}
+                                    </button>
+                                    {
+                                        this.state.showCurrency ?
+                                       <img style={{ "width": "9px", "height": "6px" }} src={up} alt="" />
+                                       :
+                                       <img style={{ "width": "9px", "height": "6px" }} src={dropdown} alt="" />
+                                    }
                                 </div>
                                 <div className={showHideCurrencyClassName} >
                                     <section className="Currencymodal-main">
-                                    <Currencies changeCurrency={this.props.changeCurrency} />
+                                        <Currencies changeCurrency={this.props.changeCurrency} />
                                     </section>
                                 </div>
 
@@ -147,7 +161,7 @@ class Header extends Component {
                             <div className={showHideClassName}>
                                 <section className="modal-main">
                                     <Cart />
-                                    
+
                                 </section>
                             </div>
                         </div>
@@ -155,6 +169,7 @@ class Header extends Component {
                     </div>
 
                 </div>
+
             </body>
         )
     }
@@ -166,4 +181,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps,{CHANGECATEGORY})(Header)
+export default connect(mapStateToProps, { CHANGECATEGORY })(Header)

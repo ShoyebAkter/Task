@@ -2,7 +2,7 @@ const INIT_STATE = {
     carts: [],
     priceIndex:0,
     total:0,
-    category:""
+    category:"all"
 };
 
 

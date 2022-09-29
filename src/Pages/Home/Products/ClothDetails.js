@@ -117,7 +117,14 @@ query getproduct($id: String!){
               this.state.productData.attributes?.map((attribute => {
                 return (
                   <div style={{"marginBottom":"24px"}}>
-                    <div className='sizetext'>{attribute.name}:</div>
+                    <div className='sizetext'>
+                      {
+                        ((attribute.id=== "Size")||(attribute.id==="Capacity")) &&
+                        <div>{attribute.name}:</div>
+
+                      }
+                      
+                      </div>
                     <div className='valuetag'>
 
                       {
@@ -140,6 +147,7 @@ query getproduct($id: String!){
                               </div>
                             )
                           }) :
+                          ((attribute.id=== "Size")||(attribute.id==="Capacity")) &&
                           attribute.items.map((size, index) => {
                             // console.log(size.value);
                             return (

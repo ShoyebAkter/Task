@@ -3,6 +3,7 @@ import Cloth from './Cloth'
 import './Product.css'
 import {withParams} from '../../customhook/HOC'
 import Cart from '../../Cart/Cart'
+import { connect } from 'react-redux'
 
 
 
@@ -15,16 +16,16 @@ import Cart from '../../Cart/Cart'
   }
 
     componentDidMount=()=>{
-      const name=this.props.params.nameId;
       
-      this.fetchCategory(name)
+      this.fetchCategory(this.props.categoryName)
       // console.log(this.props.params.nameId)
       
     }
     componentDidUpdate(prevProps) {
-      if (prevProps.params.nameId !== this.props.params.nameId) {
-        this.fetchCategory(this.props.params.nameId)
+      if (prevProps.categoryName !== this.props.categoryName) {
+        this.fetchCategory(this.props.categoryName)
       }
+      // console.log(prevProps.categoryName);
     }
     
     async fetchCategory(name){
@@ -88,7 +89,7 @@ import Cart from '../../Cart/Cart'
       :
       <div>
         {/* <div>Name: {name} </div> */}
-        <div className='categoryName' >Category Name: {this.props.params.nameId}</div>
+        <div className='categoryName' >Category Name: {this.props.categoryName}</div>
         <div className='products'>
         {
             this.state.category.map((cloth,index)=>{
@@ -106,5 +107,10 @@ import Cart from '../../Cart/Cart'
     )
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    categoryName: state.cartreducer.category
+  }
+}
 
-export default withParams(Product)
+export default connect(mapStateToProps)(Product)

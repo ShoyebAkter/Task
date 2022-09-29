@@ -8,13 +8,12 @@ import { Component } from 'react';
 import Home from './Pages/Home/Home';
 
 export default class App extends Component {
- 
-
  render(){
   return (
     <div >
     <Header />
     <Routes>
+      <Route path='/' element={<Home/>}/>
     <Route exact path='/:nameId' element={<Product/>}/>
      <Route  path='/product/:id' element={<ClothDetails  />} />
      <Route path='/cart' element={<CartDetails />}/>
