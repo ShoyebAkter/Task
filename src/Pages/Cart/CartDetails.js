@@ -79,11 +79,10 @@ class CartDetails extends Component {
                                             {
                                               <div key={index}
                                                 style={{
-                                                  "background": this.state.isActive === size.value ? "#1D1F22" : "",
-                                                  "color": this.state.isActive === size.value && "#FFFFFF",
+                                                  "background": (product.attribute===size.value)? "#1D1F22" : "",
+                                                  "color":  (product.attribute===size.value)&& "#FFFFFF",
                                                 }}
                                                 className='valuearea'
-                                                onClick={(e) => { this.setState({ isActive: size.value }) }}
                                               >{size.value}</div>
                                             }
                                           </div>

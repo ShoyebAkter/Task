@@ -11,7 +11,7 @@ class ClothDetails extends Component {
   state = {
     productData: [],
     currencyIndex:null,
-    isActive: false,
+    isActive: "",
     description:"",
     gallery:[],
     prices:[],
@@ -82,7 +82,7 @@ query getproduct($id: String!){
       // this.setState({description:newString});
   }
   send=()=>{
-    this.props.ADD(this.state.productData)
+    this.props.ADD(this.state.productData,this.state.isActive)
   }
 
   render() {
@@ -141,7 +141,9 @@ query getproduct($id: String!){
                                       "border": this.state.isActive===size.value ? "1px solid #5ECE7B" : "1px solid #1D1F22"
                                     }}
                                     className='colorarea'
-                                    onClick={() => { this.setState({ isActive: size.value }) }}
+                                    onClick={() => { 
+                                      this.setState({ isActive: size.value })
+                                    }}
                                   ></div>
                                 }
                               </div>
@@ -159,7 +161,9 @@ query getproduct($id: String!){
                                       "color": this.state.isActive === size.value && "#FFFFFF",
                                     }}
                                     className='valuearea'
-                                    onClick={() => { this.setState({ isActive: size.value }) }}
+                                    onClick={() => { this.setState({ isActive: size.value }) 
+                                    
+                                  }}
                                   >{size.value}</div>
                                 }
                               </div>

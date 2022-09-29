@@ -1,7 +1,8 @@
-export const ADD=(item)=>{
+export const ADD=(item,attribute)=>{
     return{
         type: "ADD_CART",
-        payload:item
+        payload:item,
+        attributePayload:attribute
     }
 }
 export const DLT=(id)=>{

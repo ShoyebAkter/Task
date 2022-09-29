@@ -1,3 +1,5 @@
+import { act } from "react-dom/test-utils";
+
 const INIT_STATE = {
     carts: [],
     priceIndex:0,
@@ -20,7 +22,8 @@ export const cartreducer = (state = INIT_STATE, action) => {
                 carts:[...state.carts]
             }
         }else{
-            const temp = {...action.payload,qnty:1}
+            const temp = {...action.payload,qnty:1,attribute:action.attributePayload};
+    
              return {
                 ...state,
                 carts: [...state.carts, temp]

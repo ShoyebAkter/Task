@@ -92,8 +92,8 @@ class Cart extends Component {
                                                                                             return (
                                                                                                 <div key={index}
                                                                                                     style={{
-                                                                                                        "background": this.state.isActive && this.state.attribute === item.id ? "#1D1F22" : "",
-                                                                                                        "color": this.state.isActive && this.state.attribute === item.id && "#FFFFFF",
+                                                                                                        "background":(element.attribute===item.value)? "#1D1F22" : "",
+                                                                                                        "color":(element.attribute===item.value)&& "#FFFFFF",
                                                                                                     }}
                                                                                                     className='sizevalue'
                                                                                                     onClick={() => { this.setState({ isActive: true,attribute:item.id }) }}
