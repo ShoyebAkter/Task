@@ -32,7 +32,7 @@ class Cloth extends Component {
                 <div>
                   <img src={this.state.product.gallery[0]} alt=""></img>
                   {
-                    
+                    this.state.product.attributes.length===0 &&
                     <div className='cartButton'
                      onClick={() => {
                       this.send(this.state.product);
