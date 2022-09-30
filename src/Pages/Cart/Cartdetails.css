@@ -150,6 +150,12 @@ gap: 16px;
 position: absolute;
 height: 159px;
 }
+.changeimage{
+    display: flex;
+    position: absolute;
+    right: 175px;
+    bottom: 25px;
+}
 .orderbutton{
     display: flex;
 flex-direction: column;

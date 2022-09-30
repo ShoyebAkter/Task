@@ -11,6 +11,16 @@ background: #FFFFFF;
     transform: scale(1.1);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+.cartButton{
+    background: #5ECE7B;
+     height: 41px; 
+    width: 41px;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 5px;
+    bottom: -15px
+}
 .outOfStock{
     position:absolute;
     bottom:50%;

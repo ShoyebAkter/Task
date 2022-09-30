@@ -75,8 +75,9 @@ width: 120px;
 height: 24px;
 }
 .sizevalue{
-    width: 34px;
+    width: 38px;
 height: 24px;
+padding: 4px;
 color: #1D1F22;
 background: rgba(255, 255, 255, 0.2);
 border: 1px solid #1D1F22;

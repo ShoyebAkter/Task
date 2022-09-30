@@ -104,6 +104,7 @@ class CartDetails extends Component {
                   </div>
                   <div style={{ "margin-left": "24px" }} className='imagecontainer' >
                     <img style={{ "width": "200px", "height": "288px" }} src={product.gallery[0]} alt='' />
+                    
                   </div>
                 </div>
               </div>

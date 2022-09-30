@@ -31,18 +31,15 @@ class Cloth extends Component {
               this.state.product.inStock ?
                 <div>
                   <img src={this.state.product.gallery[0]} alt=""></img>
-                  <div style={{
-                    "background": "#5ECE7B", "height": "41px", "width": "41px",
-                    "cursor": "pointer", "borderRadius": "50%",
-                    "position": "absolute",
-                    "right": "5px",
-                    "bottom": "-15px"
-                  }} onClick={() => {
-                    this.send(this.state.product);
-
-                  }}>
-                    <img style={{ "height": "24px", "width": "24px", "display": "flex", "justifyContent": "center", "paddingTop": "7px" }} src={Cartbutton} alt='' />
-                  </div>
+                  {
+                    
+                    <div className='cartButton'
+                     onClick={() => {
+                      this.send(this.state.product);
+                    }}>
+                      <img style={{ "height": "24px", "width": "24px", "display": "flex", "justifyContent": "center", "paddingTop": "7px" }} src={Cartbutton} alt='' />
+                    </div>
+                  }
                 </div>
                 :
                 <div>

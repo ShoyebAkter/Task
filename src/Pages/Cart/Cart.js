@@ -66,29 +66,28 @@ class Cart extends Component {
                                                     <div >
                                                         <div >
                                                             {
-                                                                element.attributes.map(attribute => {
-                                                                    return (
+                                                                element.attribute &&
                                                                         <div>
-                                                                             <div className='title'>{attribute.name}:</div>
+                                                                             <div className='title'>{element.attributes[0]?.name}:</div>
                                                                             <div style={{"display":"flex","gap":"4px"}}>
                                                                                 {
-                                                                                    attribute.type === 'swatch' ?
+                                                                                    element.attributes[0].type === 'swatch' ?
                                                                                     
-                                                                                        attribute.items.map((item, index) => {
+                                                                                    element.attributes.items.map((item, index) => {
                                                                                             return (
                                                                                                 <div key={index}
                                                                                                     style={{
                                                                                                         "color": "#FFFFFF",
                                                                                                         "background": `${item.value}`,
-                                                                                                        "border": this.state.isActive && this.state.attribute ===item.value? "1px solid #5ECE7B" : "1px solid #1D1F22"
+                                                                                                        "border": (element.attribute===item.value)? "1px solid #5ECE7B" : "1px solid #1D1F22"
                                                                                                     }}
                                                                                                     className='sizevalue'
-                                                                                                    onClick={() => { this.setState({ isActive: true,attribute:item.value }) }}
+                                                                                                   
                                                                                                 ></div>
                                                                                             )
                                                                                         })
                                                                                         :
-                                                                                        attribute.items.map((item, index) => {
+                                                                                        element?.attributes[0].items.map((item, index) => {
                                                                                             return (
                                                                                                 <div key={index}
                                                                                                     style={{
@@ -103,8 +102,7 @@ class Cart extends Component {
                                                                                 }
                                                                             </div>
                                                                         </div>
-                                                                    )
-                                                                })
+
                                                             }
                                                         </div>
 
