@@ -89,7 +89,7 @@ import { connect } from 'react-redux'
       :
       <div>
         {/* <div>Name: {name} </div> */}
-        <div className='categoryName' >Category Name: {this.props.categoryName}</div>
+        <div className='categoryName' >{this.props.categoryName}</div>
         <div className='products'>
         {
             this.state.category.map((cloth,index)=>{
@@ -109,6 +109,7 @@ import { connect } from 'react-redux'
 }
 const mapStateToProps = (state) => {
   return {
+    
     categoryName: state.cartreducer.category
   }
 }
