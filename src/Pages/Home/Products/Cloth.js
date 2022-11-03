@@ -27,11 +27,13 @@ class Cloth extends Component {
     return (
       <div className='product'>
         <div style={{ "position": "relative" }}>
-          <NavLink to={`/product/${this.state.product.id}`}>
+          
             {
               this.state.product.inStock ?
-                <div>
+                <div >
+                  <NavLink to={`/product/${this.state.product.id}`}>
                   <img src={this.state.product.gallery[0]} alt=""></img>
+                  </NavLink>
                   <div>
                   {
                     (this.state.product.attributes.length===0 && !this.props.cart.includes(this.state.product) ) &&
@@ -39,24 +41,19 @@ class Cloth extends Component {
                      onClick={() => {
                       this.send(this.state.product);
                     }}>
-                      
                         <div>
-                          <img style={{ "height": "24px", "width": "24px", "display": "flex", "justifyContent": "center", "paddingTop": "7px" }} src={Cartbutton} alt='' />
+                          <img  style={{ "height": "24px", "width": "24px", "display": "flex", "justifyContent": "center", "paddingTop": "7px" }} src={Cartbutton} alt='' />
                         </div>
-                      
                     </div>
                   }
                   </div>
                 </div>
                 :
                 <div>
-                  <img src={this.state.product.gallery[0]} alt=""></img>
+                  <img className='outofstockImage' src={this.state.product.gallery[0]} alt=""></img>
                   <div className='outOfStock'>OUT OF STOCK</div>
                 </div>
             }
-
-          </NavLink>
-
         </div>
         {
           this.state.product.inStock ?
@@ -69,9 +66,11 @@ class Cloth extends Component {
             </div>
             :
             <div className='outofStocktextarea'>
-              <div className='outProduct'>{this.state.product.name}</div>
-
-              <div className='outpricearea'>{this.state.product.prices[this.props.currencyIndex].currency.symbol}{this.state.product.prices[this.props.currencyIndex].amount}</div>
+              <div className='outofStockproductname'>{this.state.product.name}</div>
+              <div className='outpricearea'>
+                {this.state.product.prices[this.props.currencyIndex].currency.symbol}
+              {this.state.product.prices[this.props.currencyIndex].amount}
+              </div>
 
             </div>
         }

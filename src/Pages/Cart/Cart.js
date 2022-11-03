@@ -18,6 +18,7 @@ class Cart extends Component {
         isActive: false,
         attribute:""
     }
+    
 
     add = (ele) => {
         this.props.ADD(ele);

@@ -25,12 +25,28 @@ class Header extends Component {
         category: "",
         active: ""
     }
-    componentDidMount() {
+    constructor(props){
+        super(props);
+        this.box = React.createRef();
+    }
+      componentDidMount() {
         this.fetchCategories();
         this.fetchCurrency()
+        // Adding a click event listener
+        document.addEventListener('click', this.handleOutsideClick);
+      }
+     
+      handleOutsideClick = (event) => {
+        window.onclick = (event) => {
+            if (event.target.contains(this.box .current)
+              && event.target !== this.box .current) {     
+              console.log(`You clicked Outside the box!`);
+            } else {     
+              console.log(`You clicked Inside the box!`);
+            }
+          }
+      }
 
-        // this.changeCurrency()
-    }
 
     changeCategory=(nameId)=>{
         this.setState({ active: nameId })
@@ -107,7 +123,7 @@ class Header extends Component {
         const showHideCurrencyClassName = this.state.showCurrency ? "modalCurrency display-block " : "modalCurrency display-none"
         console.log(currencySymbol)
         return (
-            <body>
+            <body  ref={this.box}>
                 <div class="topnav" id="myTopnav">
                     <div class="navsection">
                         {

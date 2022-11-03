@@ -108,7 +108,7 @@ query getproduct($id: String!){
           <img style={{"height":"500px","width":"600px","marginInline":"50px"}} src={this.state.gallery[this.state.galleryIndex]}  alt='' ></img>
         </div>
         <div className='detailsgroup'>
-          <div className="nametext ">{this.state.productData?.brand} </div>
+          <div className="nametext ">{this.state.productData?.brand}</div>
           <div className='brandtext'>{this.state.productData?.name}</div>
           {/* <div className="nametext">Brand: </div>
           <div className='brandtext'>Name: </div> */}
@@ -119,7 +119,7 @@ query getproduct($id: String!){
                   <div style={{"marginBottom":"24px"}}>
                     <div className='sizetext'>
                       {
-                        ((attribute.id=== "Size")||(attribute.id==="Capacity")) &&
+                        // ((attribute.id=== "Size")||(attribute.id==="Capacity")) &&
                         <div>{attribute.name}:</div>
 
                       }
@@ -149,7 +149,6 @@ query getproduct($id: String!){
                               </div>
                             )
                           }) :
-                          ((attribute.id=== "Size")||(attribute.id==="Capacity")) &&
                           attribute.items.map((size, index) => {
                             // console.log(size.value);
                             return (
@@ -179,7 +178,7 @@ query getproduct($id: String!){
           <div className='pricetext'>Price: </div>
           <div className='totalprice'>{this.state.prices[this.props.currencyIndex]?.currency?.symbol} {this.state.prices[this.props.currencyIndex]?.amount}</div>
           {
-            this.state.productData.inStock &&
+            (this.state.productData.inStock && this.state.isActive) && 
             <div><button className='cartbutton' onClick={()=>this.send()}>Add to Cart</button></div>
           }
           <div className='descriptiontext' >{this.state.description}</div>

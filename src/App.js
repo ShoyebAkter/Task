@@ -4,10 +4,12 @@ import Product from './Pages/Home/Products/Product';
 import ClothDetails from './Pages/Home/Products/ClothDetails';
 import CartDetails from './Pages/Cart/CartDetails';
 import Header from './Pages/Home/Header';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import Home from './Pages/Home/Home';
 
 export default class App extends Component {
+  
+
  render(){
   return (
     <div >
