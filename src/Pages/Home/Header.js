@@ -37,14 +37,12 @@ class Header extends Component {
       }
      
       handleOutsideClick = (event) => {
-        window.onclick = (event) => {
-            if (event.target.contains(this.box .current)
-              && event.target !== this.box .current) {     
-              console.log(`You clicked Outside the box!`);
-            } else {     
-              console.log(`You clicked Inside the box!`);
-            }
+        // console.log(this.box);
+        if (this.box && !this.box.current.contains(event.target)) {
+            this.setState({showCurrency:false})
+            this.setState({showCart:false});
           }
+        
       }
 
 
@@ -55,6 +53,7 @@ class Header extends Component {
 
     removeScroll() {
         this.setState({ showCart: !this.state.showCart })
+        this.setState({showCurrency:false})
         if (this.state.showCart) {
             document.body.style.overflow = ' unset';
         }
@@ -123,7 +122,7 @@ class Header extends Component {
         const showHideCurrencyClassName = this.state.showCurrency ? "modalCurrency display-block " : "modalCurrency display-none"
         console.log(currencySymbol)
         return (
-            <body  ref={this.box}>
+            <body >
                 <div class="topnav" id="myTopnav">
                     <div class="navsection">
                         {
@@ -146,11 +145,17 @@ class Header extends Component {
                     <div>
                         <img style={{ "height": "41px", "width": "41px", "marginBlock": "auto" }} src={headerIcon} alt="" />
                     </div>
-                    <div className='actionbox'>
+                    <div ref={this.box} className='actionbox'>
                         {
-                            <div style={{ 'width': "38px" }}>
-                                <div style={{"display":"flex","alignItems":"center"}}>
-                                    <button className='currencyAction' onClick={() => this.setState({ showCurrency: !this.state.showCurrency })}>
+                            <div   style={{ 'width': "38px" }}>
+                                <div   style={{"display":"flex","alignItems":"center"}}>
+                                    <button className='currencyAction'
+                                     onClick={() =>{
+                                         this.setState({ showCurrency: !this.state.showCurrency })
+                                         this.setState({showCart:false});
+                                        }
+                                    }
+                                     >
                                         {this.state.currencies[this.props.currencyIndex]?.symbol}
                                     </button>
                                     {
@@ -169,9 +174,9 @@ class Header extends Component {
 
                             </div>
                         }
-                        <div >
+                        <div  >
                             <button onClick={() => this.removeScroll()} style={{ "background": "#FFFFFF", "border": "none", "cursor": "pointer" }} >
-                                <img style={{ "height": "20px", "width": "25px" }} src={cartImage} alt="" />
+                                <img  style={{ "height": "20px", "width": "25px" }} src={cartImage} alt="" />
                                 <span class="icon-button__badge">{this.props.cart.length}</span>
                             </button>
                             <div className={showHideClassName}>

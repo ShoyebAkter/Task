@@ -129,7 +129,7 @@ class Cart extends Component {
                     </div>
                     <div className='total'>
                         <div> Total </div>
-                        <div>{symbol} {total} </div>
+                        <div>{symbol} {total.toFixed(2)} </div>
                     </div>
                     <div className='buttoncontainer'>
                         <NavLink className='bagbutton' to={`/cart`}>View Bag</NavLink>
