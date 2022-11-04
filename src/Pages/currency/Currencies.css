@@ -12,8 +12,8 @@ display: flex;
 align-items: center;
 justify-content: center;
 }
-.singlecurrency:active{
-    background: #EEEEEE;
+.singlecurrency:hover{
+    background: rgba(57, 55, 72, 0.22);
 }
 .currencyText{
     font-family: 'Raleway';
