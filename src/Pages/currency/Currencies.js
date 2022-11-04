@@ -55,11 +55,12 @@ class Currencies extends Component {
                 {
                     this.state.currencies.map((currency,index)=>{
                         return(
-                            <div className='singlecurrency'>
+                            <div  onClick={()=>
+                                this.newIndex(index)
+                            }
+                             className='singlecurrency'>
                                 <div className='currencyText'
-                                 onClick={()=>
-                                    this.newIndex(index)
-                                }
+                                
                                  >{currency.symbol} {currency.label}</div>
                             </div>
                         )

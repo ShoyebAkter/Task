@@ -27,7 +27,9 @@ class Header extends Component {
     }
     constructor(props){
         super(props);
-        this.box = React.createRef();
+        this.cartBox = React.createRef();
+        this.currencyBox = React.createRef();
+        
     }
       componentDidMount() {
         this.fetchCategories();
@@ -37,10 +39,12 @@ class Header extends Component {
       }
      
       handleOutsideClick = (event) => {
-        // console.log(this.box);
-        if (this.box && !this.box.current.contains(event.target)) {
-            this.setState({showCurrency:false})
+        // console.log(this.cartBox.current);
+        if (this.cartBox && !this.cartBox.current.contains(event.target)) { 
             this.setState({showCart:false});
+          }
+        if (this.currencyBox && !this.currencyBox.current.contains(event.target)) { 
+            this.setState({showCurrency:false});
           }
         
       }
@@ -120,7 +124,7 @@ class Header extends Component {
         let currencySymbol = this.state.currencies[this.props.currencyIndex]
         const showHideClassName = (this.state.showCart) ? "modal display-block " : "modal display-none"
         const showHideCurrencyClassName = this.state.showCurrency ? "modalCurrency display-block " : "modalCurrency display-none"
-        console.log(currencySymbol)
+        // console.log(this.box)
         return (
             <body >
                 <div class="topnav" id="myTopnav">
@@ -145,11 +149,11 @@ class Header extends Component {
                     <div>
                         <img style={{ "height": "41px", "width": "41px", "marginBlock": "auto" }} src={headerIcon} alt="" />
                     </div>
-                    <div ref={this.box} className='actionbox'>
+                    <div  className='actionbox'>
                         {
                             <div   style={{ 'width': "38px" }}>
                                 <div   style={{"display":"flex","alignItems":"center"}}>
-                                    <button className='currencyAction'
+                                    <button ref={this.currencyBox} className='currencyAction'
                                      onClick={() =>{
                                          this.setState({ showCurrency: !this.state.showCurrency })
                                          this.setState({showCart:false});
@@ -175,7 +179,7 @@ class Header extends Component {
                             </div>
                         }
                         <div  >
-                            <button onClick={() => this.removeScroll()} style={{ "background": "#FFFFFF", "border": "none", "cursor": "pointer" }} >
+                            <button ref={this.cartBox} onClick={() => this.removeScroll()} style={{ "background": "#FFFFFF", "border": "none", "cursor": "pointer" }} >
                                 <img  style={{ "height": "20px", "width": "25px" }} src={cartImage} alt="" />
                                 <span class="icon-button__badge">{this.props.cart.length}</span>
                             </button>
