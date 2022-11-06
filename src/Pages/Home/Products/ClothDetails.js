@@ -92,7 +92,7 @@ query getproduct($id: String!){
     // console.log(id);
     return (
       <div className='clothcontainer'>
-        <div>
+        <div className='imageContainer'>
           {
             this.state.gallery.map((singlepic,index)=>{
               return(
@@ -104,8 +104,8 @@ query getproduct($id: String!){
             })
           }
         </div>
-        <div >
-          <img style={{"height":"500px","width":"600px","marginInline":"50px"}} src={this.state.gallery[this.state.galleryIndex]}  alt='' ></img>
+        <div className='productImage'>
+          <img  src={this.state.gallery[this.state.galleryIndex]}  alt='' ></img>
         </div>
         <div className='detailsgroup'>
           <div className="nametext ">{this.state.productData?.brand}</div>

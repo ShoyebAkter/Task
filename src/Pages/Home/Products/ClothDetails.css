@@ -1,14 +1,23 @@
 
 .clothcontainer{
-    width: 1002px;
 height: 595px;
 margin-left: 96px;
 margin-right: 19px;
 margin-top: 50px;
 display: flex;
-justify-content: space-between;
+justify-content: space-evenly
 }
-
+.imageContainer{
+    overflow: scroll;
+  max-height: 677px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+}
+.productImage{
+    height:500px;
+    margin-right:50px
+}
 .detailsgroup{
     width: 292px;
 height: 595px;
