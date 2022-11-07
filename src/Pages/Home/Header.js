@@ -11,6 +11,8 @@ import Product from './Products/Product'
 import dropdown from '../../assets/dropdown.png'
 import up from '../../assets/updown.png'
 import { connect } from 'react-redux'
+import { CURRENCY_QUERY } from '../queries/currencyQuery'
+import { CATEGORY_NAMEQUERY} from '../queries/categoryNameQuery'
 
 class Header extends Component {
 
@@ -67,15 +69,6 @@ class Header extends Component {
     }
 
     fetchCurrency() {
-        const CURRENCY_QUERY = {
-            query: `
-            query{
-            currencies{
-            label,
-            symbol
-                }
-            }`
-        }
 
         fetch('http://localhost:4000/', {
             method: "POST",
@@ -92,19 +85,11 @@ class Header extends Component {
 
     fetchCategories() {
 
-        const CATEGORY_QUERY = {
-            query: `
-            query{
-                categories{
-                  name
-                }
-            }
-            `
-        }
+        
         fetch('http://localhost:4000/', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(CATEGORY_QUERY)
+            body: JSON.stringify(CATEGORY_NAMEQUERY)
         })
             .then(res => res.json())
             .then(result => {

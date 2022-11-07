@@ -4,6 +4,7 @@ import './Product.css'
 import {withParams} from '../../customhook/HOC'
 import Cart from '../../Cart/Cart'
 import { connect } from 'react-redux'
+import { CATEGORY_QUERY } from '../../queries/categoryQuery'
 
 
 
@@ -29,39 +30,7 @@ import { connect } from 'react-redux'
     }
     
     async fetchCategory(name){
-      const CATEGORY_QUERY= `       
-        query getcategory($title: String!){
-  category(input: {title: $title}){
-  name,
-  products{
-    id,
-    name,
-    inStock,
-    description,
-    category,
-    brand,
-    gallery,
-    attributes{
-      id,
-      name,
-      type,
-      items{
-        displayValue,
-        value,
-        id
-      }
-    },
-    prices{
-      currency{
-        label,
-        symbol
-      },
-      amount
-    }
-  }
-}
-}
-        `
+      
       this.setState({isLoading:true});
       
       await fetch('http://localhost:4000/',{

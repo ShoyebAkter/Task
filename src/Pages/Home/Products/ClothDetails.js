@@ -4,6 +4,7 @@ import {ADD} from '../../../redux/action/action'
 import './ClothDetails.css'
 import { withParams } from '../../customhook/HOC';
 import { connect } from 'react-redux';
+import { PRODUCT_QUERY } from '../../queries/productQuery';
 
 
 
@@ -28,36 +29,7 @@ class ClothDetails extends Component {
     // const priceAmount=this.state.productData.prices[this.props.currencyIndex].amount;
     //  console.log(priceAmount);
 
-    const PRODUCT_QUERY = `
-query getproduct($id: String!){
-  product(id:$id){
-  id,
-  name,
-  inStock,
-  description,
-  category,
-  brand,
-  gallery,
-  prices{
-    currency{
-    label,
-      symbol
-    },
-    amount
-  },
-  attributes{
-    id,
-    name,
-    type,
-    items{
-      displayValue,
-      value,
-      id
-    }
-  }
-} 
-}
-`
+    
 
     await fetch('http://localhost:4000/', {
       method: "POST",

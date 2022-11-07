@@ -14,9 +14,7 @@ export const cartreducer = (state = INIT_STATE, action) => {
         case "ADD_CART":
 
         const IteamIndex = state.carts.findIndex((iteam)=> iteam.id === action.payload.id);
-        const sameItem=state.carts.map((item)=>{
-            return item.includes(action.attributePayload);
-        })
+        
 
         if(IteamIndex >= 0){
                 state.carts[IteamIndex].qnty +=1
@@ -27,19 +25,20 @@ export const cartreducer = (state = INIT_STATE, action) => {
             }
         }else{
             const temp = {...action.payload,qnty:1,attribute:action.attributePayload};
-            
-             if(sameItem){
-                return {
-                    ...state,
-                    carts: [...state.carts, temp]
-                }
-                
-             }else{
-                return {
-                    ...state,
-                    carts: [...state.carts]
-                }
-             }
+            const sameItem=state.carts.map((item)=>{
+                 if(item.includes(action.attributePayload)){
+                    return {
+                        ...state,
+                        carts: [...state.carts]
+                    }
+                 }else{
+                    return {
+                        ...state,
+                        carts: [...state.carts,temp]
+                    }
+                 }
+            })
+             
         }
 
         case "DLT_ONE":

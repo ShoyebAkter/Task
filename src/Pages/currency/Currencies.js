@@ -3,6 +3,7 @@ import { reobserveCacheFirst } from '@apollo/client/core/ObservableQuery'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {CHANGE} from "../../redux/action/action"
+import { CURRENCY_QUERY } from '../queries/currencyQuery'
 import './Currencies.css'
 
 
@@ -24,15 +25,7 @@ class Currencies extends Component {
 
 
     fetchCurrency() {
-        const CURRENCY_QUERY = {
-            query:  `
-            query{
-            currencies{
-            label,
-            symbol
-                }
-            }`
-        }
+        
        
         fetch('http://localhost:4000/', {
             method: "POST",
