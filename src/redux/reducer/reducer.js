@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils";
 
 const INIT_STATE = {
     carts: [],
@@ -14,9 +13,12 @@ export const cartreducer = (state = INIT_STATE, action) => {
         case "ADD_CART":
 
         const IteamIndex = state.carts.findIndex((iteam)=> iteam.id === action.payload.id);
-        
-
+        const temp = {...action.payload,qnty:1,attribute:action.attributePayload};
+            console.log(action.attributePayload);
+            console.log(temp.attribute);
+           
         if(IteamIndex >= 0){
+            console.log( state.carts[IteamIndex]);
                 state.carts[IteamIndex].qnty +=1
             return {
                 ...state,
@@ -24,21 +26,20 @@ export const cartreducer = (state = INIT_STATE, action) => {
             
             }
         }else{
-            const temp = {...action.payload,qnty:1,attribute:action.attributePayload};
-            const sameItem=state.carts.map((item)=>{
-                 if(item.includes(action.attributePayload)){
-                    return {
-                        ...state,
-                        carts: [...state.carts]
+            
+            if(action.attributePayload===temp.attribute)
+                    {
+                        return {
+                            ...state,
+                            carts: [...state.carts,temp]
+                        }
                     }
-                 }else{
-                    return {
-                        ...state,
-                        carts: [...state.carts,temp]
-                    }
-                 }
-            })
-             
+            else{
+                return {
+                    ...state,
+                    carts: [...state.carts]
+                }
+            } 
         }
 
         case "DLT_ONE":
