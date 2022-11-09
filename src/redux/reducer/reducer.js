@@ -14,7 +14,7 @@ export const cartreducer = (state = INIT_STATE, action) => {
 
         const IteamIndex = state.carts.findIndex((iteam)=> iteam.id === action.payload.id);
         const temp = {attribute:action.attributePayload,...action.payload,qnty:1};
-            console.log(action.attributePayload);
+            console.log(action.payload);
             console.log(temp);
            
         if(IteamIndex >= 0){
@@ -27,7 +27,14 @@ export const cartreducer = (state = INIT_STATE, action) => {
             
             }
                 }
-        }else{
+                else{
+                    return {
+                        ...state,
+                        carts: [...state.carts,temp]
+                    }
+                }
+        }
+        else{  
             return {
                 ...state,
                 carts: [...state.carts,temp]
