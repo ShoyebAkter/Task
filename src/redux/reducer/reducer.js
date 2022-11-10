@@ -18,8 +18,9 @@ export const cartreducer = (state = INIT_STATE, action) => {
             console.log(temp);
            
         if(IteamIndex >= 0){
+            console.log("hi");
             console.log( state.carts[IteamIndex].attribute===action.attributePayload);
-                if(state.carts[IteamIndex].attribute===action.attributePayload){
+                if(state.carts[IteamIndex].attribute===action.attributePayload || state.carts[IteamIndex].attribute){
                     state.carts[IteamIndex].qnty +=1
             return {
                 ...state,
@@ -34,7 +35,8 @@ export const cartreducer = (state = INIT_STATE, action) => {
                     }
                 }
         }
-        else{  
+        else{ 
+            console.log("hi else"); 
             return {
                 ...state,
                 carts: [...state.carts,temp]
