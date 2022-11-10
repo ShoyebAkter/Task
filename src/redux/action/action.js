@@ -11,10 +11,10 @@ export const DLT=(id)=>{
         payload:id
     }
 }
-export const DLTONE=(id)=>{
+export const DLTONE=(attribute)=>{
     return{
         type: "DLT_ONE",
-        payload:id
+        payload:attribute
     }
 }
 

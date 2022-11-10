@@ -29,8 +29,8 @@ class Cart extends Component {
     delete = () => {
         this.props.DLT()
     }
-    deleteOne = (id) => {
-        this.props.DLTONE(id)
+    deleteOne = (attribute) => {
+        this.props.DLTONE(attribute)
     }
 
     render() {
@@ -106,15 +106,13 @@ class Cart extends Component {
 
                                                             }
                                                         </div>
-
                                                     </div>
                                                 </div>
                                                 <div className='buttonarea'>
                                                     <div onClick={() => this.add(element)}><img className='plusclass' src={plus} alt="" /></div>
                                                     <div>{element.qnty}</div>
-                                                    <div onClick={element.qnty <= 1 ? () => this.deleteOne(element.id) : () => this.remove(element)}><img className='plusclass' src={minus} alt="" /></div>
+                                                    <div onClick={element.qnty <= 1 ? () => this.deleteOne(element.attribute) : () => this.remove(element)}><img className='plusclass' src={minus} alt="" /></div>
                                                 </div>
-
                                             </div>
                                             <div  >
                                                 <img className='imagediv' src={element.gallery[0]} alt="" />
