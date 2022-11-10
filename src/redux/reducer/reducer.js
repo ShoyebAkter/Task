@@ -12,7 +12,7 @@ export const cartreducer = (state = INIT_STATE, action) => {
     switch (action.type) {
         case "ADD_CART":
 
-        const IteamIndex = state.carts.findIndex((iteam)=>iteam.attribute===action.attributePayload ? iteam.id === action.payload.id :"");
+        const IteamIndex = state.carts.findIndex((iteam)=>(iteam.attribute===action.attributePayload || iteam.attribute) ? iteam.id === action.payload.id :"");
         const temp = {attribute:action.attributePayload,...action.payload,qnty:1};
             console.log(action.payload);
             console.log(temp);
@@ -24,8 +24,7 @@ export const cartreducer = (state = INIT_STATE, action) => {
                     state.carts[IteamIndex].qnty +=1
             return {
                 ...state,
-                carts:[...state.carts]
-            
+                carts:[...state.carts]           
             }
                 }
                 else{
