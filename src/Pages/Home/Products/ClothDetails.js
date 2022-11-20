@@ -40,10 +40,10 @@ class ClothDetails extends Component {
       .then(result => {
         console.log(result)
         this.setState({ productData: result.data.product });
-        const regex = /(<([^>]+)>)/ig
-        const newString=result.data.product.description
+        // const regex = /(<([^>]+)>)/ig
+        // const newString=result.data.product.description
         // console.log(newString);
-        this.setState({description:newString.replace(regex,'')})
+        // this.setState({description:newString.replace(regex,'')})
         this.setState({gallery:result.data.product.gallery})
         this.setState({prices:result.data.product.prices})
         // console.log(this.state.productData)
@@ -153,7 +153,7 @@ class ClothDetails extends Component {
             (this.state.productData.inStock && this.state.isActive) && 
             <div><button className='cartbutton' onClick={()=>this.send()}>Add to Cart</button></div>
           }
-          <div className='descriptiontext' >{this.state.description}</div>
+          <div className='descriptiontext' >{this.state.productData?.description}</div>
         </div>
       </div>
 

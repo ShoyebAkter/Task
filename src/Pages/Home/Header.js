@@ -44,6 +44,8 @@ class Header extends Component {
         // console.log(this.cartBox.current);
         if (this.cartBox && !this.cartBox.current.contains(event.target)) { 
             this.setState({showCart:false});
+            // this.removeScroll()
+            document.body.style.overflow = ' unset';
           }
         if (this.currencyBox && !this.currencyBox.current.contains(event.target)) { 
             this.setState({showCurrency:false});
@@ -105,9 +107,7 @@ class Header extends Component {
 
 
     render() {
-
-        let currencySymbol = this.state.currencies[this.props.currencyIndex]
-        const showHideClassName = (this.state.showCart) ? "modal display-block " : "modal display-none"
+        const showHideClassName = this.state.showCart ? "modal display-block " : "modal display-none"
         const showHideCurrencyClassName = this.state.showCurrency ? "modalCurrency display-block " : "modalCurrency display-none"
         // console.log(this.box)
         return (

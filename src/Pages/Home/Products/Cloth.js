@@ -36,14 +36,17 @@ class Cloth extends Component {
                   </NavLink>
                   <div>
                   {
-                    (this.state.product.attributes.length===0 && !this.props.cart.includes(this.state.product) ) &&
+                    (this.state.product.attributes.length===0 && this.props.cart.includes(this.state.product) ) &&
                     <div className='cartButton'
                      onClick={() => {
                       this.send(this.state.product);
                     }}>
-                        <div>
+                        {
+                         
+                          <div>
                           <img  style={{ "height": "24px", "width": "24px", "display": "flex", "justifyContent": "center", "paddingTop": "7px" }} src={Cartbutton} alt='' />
-                        </div>
+                          </div>
+                        }
                     </div>
                   }
                   </div>
@@ -71,7 +74,6 @@ class Cloth extends Component {
                 {this.state.product.prices[this.props.currencyIndex].currency.symbol}
               {this.state.product.prices[this.props.currencyIndex].amount}
               </div>
-
             </div>
         }
       </div>
