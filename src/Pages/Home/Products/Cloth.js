@@ -23,7 +23,7 @@ class Cloth extends Component {
     this.props.ADD(ele)
   }
   render() {
-    console.log(this.props.cart.includes(this.state.product))
+    console.log(this.props.cart.includes(this.state.product.attribute))
     return (
       <div className='product'>
         <div style={{ "position": "relative" }}>

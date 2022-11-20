@@ -131,13 +131,13 @@ class Header extends Component {
                             })
                         }
                     </div>
-                    <div>
-                        <img style={{ "height": "41px", "width": "41px", "marginBlock": "auto" }} src={headerIcon} alt="" />
+                    <div className='headerIcon'>
+                        <img src={headerIcon} alt="" />
                     </div>
                     <div  className='actionbox'>
                         {
-                            <div   style={{ 'width': "38px" }}>
-                                <div   style={{"display":"flex","alignItems":"center"}}>
+                            <div>
+                                <div className='actionContainer'>
                                     <button ref={this.currencyBox} className='currencyAction'
                                      onClick={() =>{
                                          this.setState({ showCurrency: !this.state.showCurrency })
@@ -149,9 +149,9 @@ class Header extends Component {
                                     </button>
                                     {
                                         this.state.showCurrency ?
-                                       <img style={{ "width": "9px", "height": "6px" }} src={up} alt="" />
+                                       <img  src={up} alt="" />
                                        :
-                                       <img style={{ "width": "9px", "height": "6px" }} src={dropdown} alt="" />
+                                       <img src={dropdown} alt="" />
                                     }
                                 </div>
                                 <div className={showHideCurrencyClassName} >
@@ -163,9 +163,9 @@ class Header extends Component {
 
                             </div>
                         }
-                        <div  >
-                            <button ref={this.cartBox} onClick={() => this.removeScroll()} style={{ "background": "#FFFFFF", "border": "none", "cursor": "pointer" }} >
-                                <img  style={{ "height": "20px", "width": "25px" }} src={cartImage} alt="" />
+                        <div className='cartArea' >
+                            <button ref={this.cartBox} onClick={() => this.removeScroll()}>
+                                <img src={cartImage} alt="" />
                                 <span class="icon-button__badge">{this.props.cart.length}</span>
                             </button>
                             <div className={showHideClassName}>

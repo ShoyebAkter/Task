@@ -99,7 +99,7 @@ class CartDetails extends Component {
                     <div className='buttongroup'>
                       <div onClick={() => this.add(product)}><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22", "cursor": "pointer" }} src={plus} alt="" /></div>
                       <div>{product.qnty}</div>
-                      <div onClick={product.qnty<=1?()=>this.deleteOne(product.id):() => this.remove(product)}><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22", "cursor": "pointer" }} src={minus} alt="" /></div>
+                      <div onClick={product.qnty<=1?()=>this.deleteOne(product.attribute):() => this.remove(product)}><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22", "cursor": "pointer" }} src={minus} alt="" /></div>
                     </div>
                   </div>
                   <div style={{ "margin-left": "24px" }} className='imagecontainer' >
@@ -116,9 +116,9 @@ class CartDetails extends Component {
           <div className='totalarea'>
 
             <div className='taxarea'>
-              <div >Tax 21% : {symbol}{tax}</div>
+              <div >Tax 21% : {symbol}{tax.toFixed(2)}</div>
               <div>Quantity : {quantity}</div>
-              <div>Total: {symbol} {total}</div>
+              <div>Total: {symbol} {total.toFixed(2)}</div>
             </div>
             <div className='orderbutton'>
               <div className='ordertext'>Order</div>

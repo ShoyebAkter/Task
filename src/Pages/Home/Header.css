@@ -21,7 +21,28 @@
   padding-left: 101px;
 
 }
-
+.headerIcon img{
+  height: 41px;
+   width: 41px;
+    margin-block: auto 
+}
+.actionContainer{
+  display:flex;
+  align-items:center
+}
+.actionContainer img{
+  width: 9px;
+   height: 6px 
+}
+.cartArea button{
+  background: #FFFFFF; 
+  border: none; 
+  cursor: pointer
+}
+.cartArea img{
+  height: 20px;
+   width: 25px 
+}
 .linkText {
   float: left;
   display: block;
