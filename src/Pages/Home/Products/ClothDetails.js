@@ -150,8 +150,8 @@ class ClothDetails extends Component {
           <div className='pricetext'>Price: </div>
           <div className='totalprice'>{this.state.prices[this.props.currencyIndex]?.currency?.symbol} {this.state.prices[this.props.currencyIndex]?.amount}</div>
           {
-            (this.state.productData.inStock && this.state.isActive) && 
-            <div><button className='cartbutton' onClick={()=>this.send()}>Add to Cart</button></div>
+            (this.state.productData.inStock) && 
+            <div><button disabled={!this.state.isActive} className='cartbutton' onClick={()=>this.send()}>Add to Cart</button></div>
           }
           <div className='descriptiontext' >{this.state.productData?.description}</div>
         </div>
