@@ -68,10 +68,12 @@ class ClothDetails extends Component {
           {
             this.state.gallery.map((singlepic,index)=>{
               return(
-                <img key={index}
+                <div className='detailsPic'>
+                  <img key={index}
                 onClick={()=>this.setState({galleryIndex:index})}
-                 style={{"width":"79px","height":"80px","marginBottom":"32px","border":"1px solid black","cursor":"pointer"}}
+                 style={{}}
                   src={singlepic} alt=""/>
+                </div>
               )
             })
           }
@@ -82,13 +84,11 @@ class ClothDetails extends Component {
         <div className='detailsgroup'>
           <div className="nametext ">{this.state.productData?.brand}</div>
           <div className='brandtext'>{this.state.productData?.name}</div>
-          {/* <div className="nametext">Brand: </div>
-          <div className='brandtext'>Name: </div> */}
           <div >
             {
               this.state.productData.attributes?.map((attribute => {
                 return (
-                  <div style={{"marginBottom":"24px"}}>
+                  <div className='attribute'>
                     <div className='sizetext'>
                       {
                         // ((attribute.id=== "Size")||(attribute.id==="Capacity")) &&

@@ -114,8 +114,8 @@ class Cart extends Component {
                                                     <div onClick={element.qnty <= 1 ? () => this.deleteOne(element.attribute) : () => this.remove(element)}><img className='plusclass' src={minus} alt="" /></div>
                                                 </div>
                                             </div>
-                                            <div  >
-                                                <img className='imagediv' src={element.gallery[0]} alt="" />
+                                            <div className='cartImage' >
+                                                <img  src={element.gallery[0]} alt="" />
                                             </div>
                                         </div>
                                     </div>

@@ -17,7 +17,13 @@ background: #FFFFFF;
     bottom: -15px;
     display: none;
 }
-
+.cartButton img{
+    height: 24px;
+     width: 24px;
+     display: flex;
+     justify-content: center;
+     padding-top: 7px
+}
 
 .product:hover {
     
