@@ -97,13 +97,17 @@ class CartDetails extends Component {
                       </div>
                     </div>
                     <div className='buttongroup'>
-                      <div onClick={() => this.add(product)}><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22", "cursor": "pointer" }} src={plus} alt="" /></div>
+                      <div className='plusMinusButton' onClick={() => this.add(product)}>
+                        <img src={plus} alt="" />
+                        </div>
                       <div>{product.qnty}</div>
-                      <div onClick={product.qnty<=1?()=>this.deleteOne(product.attribute):() => this.remove(product)}><img style={{ "height": "45px", "width": "45px", "border": " 1px solid #1D1F22", "cursor": "pointer" }} src={minus} alt="" /></div>
+                      <div className='plusMinusButton' onClick={product.qnty<=1?()=>this.deleteOne(product.attribute):() => this.remove(product)}>
+                        <img  src={minus} alt="" />
+                        </div>
                     </div>
                   </div>
-                  <div style={{ "margin-left": "24px" }} className='imagecontainer' >
-                    <img style={{ "width": "200px", "height": "288px" }} src={product.gallery[0]} alt='' />
+                  <div  className='imagecontainer' >
+                    <img src={product.gallery[0]} alt='' />
                     
                   </div>
                 </div>

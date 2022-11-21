@@ -28,7 +28,8 @@
 }
 .actionContainer{
   display:flex;
-  align-items:center
+  align-items:center;
+  gap: 4px;
 }
 .actionContainer img{
   width: 9px;

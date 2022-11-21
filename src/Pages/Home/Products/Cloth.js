@@ -43,7 +43,7 @@ class Cloth extends Component {
                     }}>
                         {
                          
-                          <div>
+                          <div className='cartImage'>
                           <img src={Cartbutton} alt='' />
                           </div>
                         }

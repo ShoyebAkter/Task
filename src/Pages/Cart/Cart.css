@@ -20,8 +20,6 @@ margin-bottom: 32px;
 display: flex;
 }
 .buttonarea{
-    width: 24px;
-height: 210px;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -29,7 +27,6 @@ align-items: center;
 margin-left: 4px;
 }
 .itemdetails{
-height: 190px;
 display: flex;
 margin-right: 8px;
 }
@@ -71,8 +68,7 @@ color: #1D1F22;
 padding: 0px;
 flex-direction: row;
 align-items: flex-start;
-width: 120px;
-height: 24px;
+
 }
 .sizevalue{
     width: 38px;
@@ -104,12 +100,11 @@ font-style: normal;
 font-weight: 700;
 font-size: 16px;
 }
-.cartImage img{
-    margin-right: 8px;
-    width: 110px;
-height: 190px;
-}
 
+.attributeContainer{
+    display:flex;
+    gap:4px
+}
 .buttoncontainer{
     width: 292px;
 height: 43px;

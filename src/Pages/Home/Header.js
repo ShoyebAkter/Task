@@ -58,7 +58,7 @@ class Header extends Component {
         this.setState({ active: nameId })
         this.props.CHANGECATEGORY(nameId)
     }
-
+    
     removeScroll() {
         this.setState({ showCart: !this.state.showCart })
         this.setState({showCurrency:false})
@@ -170,7 +170,7 @@ class Header extends Component {
                             </button>
                             <div className={showHideClassName}>
                                 <section className="modal-main">
-                                    <Cart />
+                                    <Cart/>
 
                                 </section>
                             </div>
