@@ -11,8 +11,8 @@ background: #FFFFFF;
     cursor: pointer;
     border-radius: 50%;
     position: absolute;
-    right: 5px;
-    bottom: -15px;
+    right: 32px;
+    bottom: 165px;
     display: none;
 }
 .cartButton img{
@@ -24,7 +24,7 @@ background: #FFFFFF;
 }
 
 .product:hover {
-    
+    height: 100%;
     background: #FFFFFF;
     transform: scale(1.1);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -32,11 +32,9 @@ background: #FFFFFF;
 .product:hover .cartButton{
     display: block;
 }
-
-
 .outOfStock{
     position:absolute;
-    bottom:50%;
+    bottom:65%;
     right: 30%;
     font-weight: 400;
 font-size: 28px;

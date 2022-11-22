@@ -119,7 +119,6 @@ cursor: pointer;
 
 .buttongroup{
     width: 45px;
-height: 288px;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
