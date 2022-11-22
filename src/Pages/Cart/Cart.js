@@ -39,7 +39,7 @@ class Cart extends Component {
         let symbol;
         // console.log(this.state.totalPrice);
         console.log(this.state.cart)
-        console.log(this.props.changeShowCart)
+        console.log(this.props.cart)
         return (
 
             <div >
@@ -60,7 +60,7 @@ class Cart extends Component {
                                             <div className='itemdetails'>
                                                 <div className='itemtext'>
                                                     <div className='nameprice'>
-                                                        <div className='productname'>{element.name}</div>
+                                                        <div className='cartproductname'>{element.name}</div>
                                                         <div className='productprice'>
                                                             {element.prices[this.props.currencyIndex].currency.symbol}
                                                             {element.prices[this.props.currencyIndex].amount}</div>
@@ -118,7 +118,7 @@ class Cart extends Component {
                                                 </div>
                                             </div>
                                             
-                                                <img style={{"height":"210px","width":"100px"}}  src={element.gallery[0]} alt="" />
+                                                <img style={{"height":"100%","width":"100px","marginBlock":"auto"}}  src={element.gallery[0]} alt="" />
                                             
                                         </div>
                                     </div>

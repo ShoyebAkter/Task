@@ -26,11 +26,11 @@ class Cloth extends Component {
     console.log(this.props.cart.includes(this.state.product.attribute))
     return (
       <div className='product'>
-        <div style={{ "position": "relative" }}>
+        <div >
           
             {
               this.state.product.inStock ?
-                <div >
+                <div className='clothImage'>
                   <NavLink to={`/product/${this.state.product.id}`}>
                   <img src={this.state.product.gallery[0]} alt=""></img>
                   </NavLink>
@@ -61,7 +61,7 @@ class Cloth extends Component {
         {
           this.state.product.inStock ?
             <div className='textarea'>
-              <div className='productname'>{this.state.product.name}</div>
+              <div className='clothproductname'>{this.state.product.name}</div>
               <div className='pricearea'>
                 {this.state.product.prices[this.props.currencyIndex].currency.symbol}
                 {this.state.product.prices[this.props.currencyIndex].amount}</div>
@@ -72,8 +72,8 @@ class Cloth extends Component {
               <div className='outofStockproductname'>{this.state.product.name}</div>
               <div className='outpricearea'>
                 {this.state.product.prices[this.props.currencyIndex].currency.symbol}
-              {this.state.product.prices[this.props.currencyIndex].amount}
-              </div>
+                {this.state.product.prices[this.props.currencyIndex].amount}</div>
+
             </div>
         }
       </div>

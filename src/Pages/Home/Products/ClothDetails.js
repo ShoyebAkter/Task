@@ -40,10 +40,10 @@ class ClothDetails extends Component {
       .then(result => {
         console.log(result)
         this.setState({ productData: result.data.product });
-        // const regex = /(<([^>]+)>)/ig
-        // const newString=result.data.product.description
-        // console.log(newString);
-        // this.setState({description:newString.replace(regex,'')})
+        const regex = /(<([^>]+)>)/ig
+        const newString=result.data.product.description
+        console.log(newString);
+        this.setState({description:newString.replace(regex,'')})
         this.setState({gallery:result.data.product.gallery})
         this.setState({prices:result.data.product.prices})
         // console.log(this.state.productData)
@@ -150,10 +150,12 @@ class ClothDetails extends Component {
           <div className='pricetext'>Price: </div>
           <div className='totalprice'>{this.state.prices[this.props.currencyIndex]?.currency?.symbol} {this.state.prices[this.props.currencyIndex]?.amount}</div>
           {
-            (this.state.productData.inStock) && 
+            (this.state.productData.attributes?.length>0) ? 
             <div><button disabled={!this.state.isActive} className='cartbutton' onClick={()=>this.send()}>Add to Cart</button></div>
+            :
+            <div><button className='cartbutton' onClick={()=>this.send()}>Add to Cart</button></div>
           }
-          <div className='descriptiontext' >{this.state.productData?.description}</div>
+          <div className='descriptiontext' >{this.state.description}</div>
         </div>
       </div>
 
