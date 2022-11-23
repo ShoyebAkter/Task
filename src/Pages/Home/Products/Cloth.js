@@ -53,10 +53,9 @@ class Cloth extends Component {
                 </div>
                 :
                 <div>
-                  <div>
                   <img className='outofstockImage' src={this.state.product.gallery[0]} alt=""></img>
                   <div className='outOfStock'>OUT OF STOCK</div>
-                  </div>
+                  
                 </div>
             }
         </div>

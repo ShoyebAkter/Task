@@ -32,6 +32,9 @@ background: #FFFFFF;
 .product:hover .cartButton{
     display: block;
 }
+.product:hover .outOfStock{
+    display: block;
+}
 .outOfStock{
     position:absolute;
     bottom:65%;
@@ -39,6 +42,7 @@ background: #FFFFFF;
     font-weight: 400;
 font-size: 28px;
 color: #8D8F9A;
+display: none;
 }
 img{
     width: 100%;
