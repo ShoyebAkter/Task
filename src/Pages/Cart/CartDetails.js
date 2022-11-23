@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './Cartdetails.css'
+// import leftside '../../assets/left.svg'
+// import rightside '../../assets/imageRight.png'
 import plus from '../../assets/plus-square2.png'
 import minus from '../../assets/minus-square2.png'
 import { ADD, REMOVE,DLTONE } from '../../redux/action/action'
+
 
 class CartDetails extends Component {
   state = {
@@ -108,7 +111,6 @@ class CartDetails extends Component {
                   </div>
                   <div  className='imagecontainer' >
                     <img src={product.gallery[0]} alt='' />
-                    
                   </div>
                 </div>
               </div>

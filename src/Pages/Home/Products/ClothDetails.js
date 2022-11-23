@@ -71,7 +71,6 @@ class ClothDetails extends Component {
                 <div className='detailsPic'>
                   <img key={index}
                 onClick={()=>this.setState({galleryIndex:index})}
-                 style={{}}
                   src={singlepic} alt=""/>
                 </div>
               )

@@ -124,7 +124,19 @@ flex-direction: column;
 justify-content: space-between;
 align-items: center;
 }
-
+.leftRightArea{
+    display: flex;
+    column-gap: 5px;
+    position: absolute;
+    bottom:30%;
+    right: 10%;
+}
+.leftImage{
+    background-color: #000000;
+    height: 24px;
+    width: 24px;
+    
+}
 .taxarea{
     font-family: 'Raleway';
 font-style: normal;
