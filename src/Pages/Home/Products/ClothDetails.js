@@ -42,10 +42,12 @@ class ClothDetails extends Component {
         this.setState({ productData: result.data.product });
         const regex = /(<([^>]+)>)/ig
         const newString=result.data.product.description
-        console.log(newString);
-        this.setState({description:newString.replace(regex,'')})
+        
+        this.setState({description:newString})
         // const parser = new DOMParser()
         // const virtualDoc = parser.parseFromString(newString, 'text/html')
+        // console.log(virtualDoc);
+        // this.setState({description:virtualDoc})
         this.setState({gallery:result.data.product.gallery})
         this.setState({prices:result.data.product.prices})
         // console.log(this.state.productData)
@@ -160,7 +162,7 @@ class ClothDetails extends Component {
             <div><button disabled className='cartbutton' >Add to Cart</button></div>
             
           }
-          <div className='descriptiontext' >{this.state.description}</div>
+          <div className='descriptiontext' dangerouslySetInnerHTML={{__html:this.state.description}}></div>
         </div>
       </div>
 
