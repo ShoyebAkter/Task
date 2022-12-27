@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { PRODUCT_QUERY } from '../../queries/productQuery';
 
 
-
 class ClothDetails extends Component {
   state = {
     productData: [],
@@ -101,6 +100,7 @@ class ClothDetails extends Component {
                       {
                         attribute.type === "swatch" ?
                           attribute.items.map((size, index) => {
+                           
                             return (
                               <div>
                                 {
@@ -113,6 +113,7 @@ class ClothDetails extends Component {
                                     className='colorarea'
                                     onClick={() => {
                                       this.setState({ isActive: size.value })
+                                      
                                     }}
                                   ></div>
                                 }
@@ -124,7 +125,7 @@ class ClothDetails extends Component {
                               <div>
                                 {
                                   <div key={index}
-                                    className={`${this.state.isActive==size.value? 'clothvaluearea':'clothsvaluearea'}`}
+                                    className={`${this.state.isActive===size.value? 'clothvaluearea':'clothsvaluearea'}`}
                                     
                                     onClick={() => {
                                       this.setState({ isActive: size.value })
@@ -143,10 +144,10 @@ class ClothDetails extends Component {
             }
           </div>
           <div className='pricetext'>Price: </div>
-          <div className='totalprice'>{this.state.prices[this.props.currencyIndex]?.currency?.symbol} {this.state.prices[this.props.currencyIndex]?.amount}</div>
+          <div className='totalprice'>{this.state.prices[this.props.currencyIndex]?.currency?.symbol}
+           {this.state.prices[this.props.currencyIndex]?.amount}</div>
           {
-            (this.state.productData.attributes?.length > 0) &&
-              (this.state.productData?.inStock) ?
+            (this.state.productData.attributes?.length > 0)?
               <div><button disabled={!this.state.isActive} onClick={() => this.send()}
                 className='cartbutton'>Add to Cart</button></div>
               :
