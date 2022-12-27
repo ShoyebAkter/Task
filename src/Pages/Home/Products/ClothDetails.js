@@ -44,6 +44,8 @@ class ClothDetails extends Component {
         const newString=result.data.product.description
         console.log(newString);
         this.setState({description:newString.replace(regex,'')})
+        // const parser = new DOMParser()
+        // const virtualDoc = parser.parseFromString(newString, 'text/html')
         this.setState({gallery:result.data.product.gallery})
         this.setState({prices:result.data.product.prices})
         // console.log(this.state.productData)
@@ -62,6 +64,7 @@ class ClothDetails extends Component {
     // console.log(priceAmount)
     // const {id} = this.state.productData[0];
     // console.log(id);
+    console.log(this.state.productData);
     return (
       <div className='clothcontainer'>
         <div className='imageContainer'>
@@ -149,10 +152,13 @@ class ClothDetails extends Component {
           <div className='pricetext'>Price: </div>
           <div className='totalprice'>{this.state.prices[this.props.currencyIndex]?.currency?.symbol} {this.state.prices[this.props.currencyIndex]?.amount}</div>
           {
-            (this.state.productData.attributes?.length>0) ? 
-            <div><button disabled={!this.state.isActive} className='cartbutton' onClick={()=>this.send()}>Add to Cart</button></div>
+            (this.state.productData.attributes?.length>0) &&
+            (this.state.productData?.inStock)?
+            <div><button disabled={!this.state.isActive} onClick={()=>this.send()}
+             className='cartbutton'>Add to Cart</button></div>
             :
-            <div><button className='cartbutton' onClick={()=>this.send()}>Add to Cart</button></div>
+            <div><button disabled className='cartbutton' >Add to Cart</button></div>
+            
           }
           <div className='descriptiontext' >{this.state.description}</div>
         </div>

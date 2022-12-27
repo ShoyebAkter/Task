@@ -15,17 +15,14 @@ justify-content: space-evenly
 }
 .detailsPic img{
     margin-bottom:32px;
+    margin-right: 10px;
     cursor:pointer;
-    height: 100px;
-    width: 100px;
+    max-height: 677px;
 }
 .attribute{
     margin-bottom: 24px;
 }
-.productImage{
-    margin-right:50px;
-    max-width: 580px;
-}
+
 .detailsgroup{
     width: 292px;
 height: 595px;
@@ -110,4 +107,7 @@ font-family: 'Roboto';
 font-style: normal;
 font-size: 16px;
 color: #1D1F22;
+}
+.productImage{
+    max-height: 677px;
 }

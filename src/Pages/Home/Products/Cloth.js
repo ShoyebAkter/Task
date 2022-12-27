@@ -32,7 +32,7 @@ class Cloth extends Component {
               this.state.product.inStock ?
                 <div className='clothImage'>
                   <NavLink to={`/product/${this.state.product.id}`}>
-                  <img src={this.state.product.gallery[0]} alt=""></img>
+                  <img className='imageOfProduct' src={this.state.product.gallery[0]} alt=""></img>
                   </NavLink>
                   <div>
                   {
@@ -53,7 +53,9 @@ class Cloth extends Component {
                 </div>
                 :
                 <div>
+                  <NavLink to={`/product/${this.state.product.id}`}>
                   <img className='outofstockImage' src={this.state.product.gallery[0]} alt=""></img>
+                  </NavLink>
                   <div className='outOfStock'>OUT OF STOCK</div>
                   
                 </div>
