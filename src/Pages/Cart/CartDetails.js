@@ -60,13 +60,11 @@ class CartDetails extends Component {
                                   {
                                     attribute.type === "swatch" ?
                                       attribute.items.map((size, index) => {
-                                        console.log(size.value);
                                         return (
                                           <div>
                                             {
                                               <div key={index}
                                                 style={{
-                                                  "color": "#FFFFFF",
                                                   "background": `${size.value}`
                                                 }}
                                                 className='colorarea'
@@ -81,11 +79,8 @@ class CartDetails extends Component {
                                           <div>
                                             {
                                               <div key={index}
-                                                style={{
-                                                  "background": (product.attribute===size.value)? "#1D1F22" : "",
-                                                  "color":  (product.attribute===size.value)&& "#FFFFFF",
-                                                }}
-                                                className='valuearea'
+                                                
+                                                className={`${product.attribute===size.value? 'clothvaluearea':'clothsvaluearea'}`}
                                               >{size.value}</div>
                                             }
                                           </div>

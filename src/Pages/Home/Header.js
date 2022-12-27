@@ -119,14 +119,13 @@ class Header extends Component {
                                 const nameId = category.name;
                                 return (
                                     <Link
-                                        style={{
-                                            color: this.state.active === nameId ? "#5ECE7B" : "#1D1F22",
-                                            borderBottom: this.state.active === nameId ? "2px solid #5ECE7B" : ""
-                                        }}
+                                        
                                         onClick={() => {
                                             this.changeCategory(nameId)
                                         }}
-                                        className="linkText" to={`/${nameId}`} >{nameId}</Link>
+                                        className={`${this.state.active === nameId? 'active':'linkText'}`}
+                                        
+                                         to={`/${nameId}`} >{nameId}</Link>
                                 )
                             })
                         }

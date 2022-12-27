@@ -78,13 +78,6 @@ class Cart extends Component {
                                                                                 element.attributes.items.map((item, index) => {
                                                                                     return (
                                                                                         <div key={index}
-                                                                                            style={{
-                                                                                                "color": "#FFFFFF",
-                                                                                                "background": `${item.value}`,
-                                                                                                "border": (element.attribute === item.value) ? "1px solid #5ECE7B" : "1px solid #1D1F22"
-                                                                                            }}
-                                                                                            className='sizevalue'
-
                                                                                         ></div>
                                                                                     )
                                                                                 })
@@ -92,11 +85,8 @@ class Cart extends Component {
                                                                                 element?.attributes[0].items.map((item, index) => {
                                                                                     return (
                                                                                         <div key={index}
-                                                                                            style={{
-                                                                                                "background": (element.attribute === item.value) ? "#1D1F22" : "",
-                                                                                                "color": (element.attribute === item.value) && "#FFFFFF",
-                                                                                            }}
-                                                                                            className='sizevalue'
+                                                                                            
+                                                                                            className={`${element.attribute === item.value? 'clothvaluearea':'clothsvaluearea'}`}
                                                                                             onClick={() => { this.setState({ isActive: true, attribute: item.id }) }}
                                                                                         >{item.value}</div>
                                                                                     )

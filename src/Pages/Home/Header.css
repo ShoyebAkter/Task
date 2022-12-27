@@ -65,6 +65,21 @@
 }
 
 .active {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
   color: #5ECE7B;
   border-bottom: 2px solid #5ECE7B;
 }

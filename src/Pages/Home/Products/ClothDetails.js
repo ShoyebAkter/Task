@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import React, { Component } from 'react';
-import {ADD} from '../../../redux/action/action'
+import { ADD } from '../../../redux/action/action'
 import './ClothDetails.css'
 import { withParams } from '../../customhook/HOC';
 import { connect } from 'react-redux';
@@ -11,13 +11,13 @@ import { PRODUCT_QUERY } from '../../queries/productQuery';
 class ClothDetails extends Component {
   state = {
     productData: [],
-    currencyIndex:null,
+    currencyIndex: null,
     isActive: "",
-    description:"",
-    gallery:[],
-    prices:[],
-    symbol:"",
-    galleryIndex:0
+    description: "",
+    gallery: [],
+    prices: [],
+    symbol: "",
+    galleryIndex: 0
   };
 
   componentDidMount() {
@@ -29,7 +29,7 @@ class ClothDetails extends Component {
     // const priceAmount=this.state.productData.prices[this.props.currencyIndex].amount;
     //  console.log(priceAmount);
 
-    
+
 
     await fetch('http://localhost:4000/', {
       method: "POST",
@@ -41,49 +41,45 @@ class ClothDetails extends Component {
         console.log(result)
         this.setState({ productData: result.data.product });
         const regex = /(<([^>]+)>)/ig
-        const newString=result.data.product.description
-        
-        this.setState({description:newString})
+        const newString = result.data.product.description
+
+        this.setState({ description: newString })
         // const parser = new DOMParser()
         // const virtualDoc = parser.parseFromString(newString, 'text/html')
         // console.log(virtualDoc);
         // this.setState({description:virtualDoc})
-        this.setState({gallery:result.data.product.gallery})
-        this.setState({prices:result.data.product.prices})
+        this.setState({ gallery: result.data.product.gallery })
+        this.setState({ prices: result.data.product.prices })
         // console.log(this.state.productData)
         // console.log(this.state.categoryName)
       })
-      
-      // 
-      // this.setState({description:newString});
+
+    // 
+    // this.setState({description:newString});
   }
-  send=()=>{
-    this.props.ADD(this.state.productData,this.state.isActive)
+  send = () => {
+    this.props.ADD(this.state.productData, this.state.isActive)
   }
 
   render() {
-    // const priceAmount=this.state.prices[this.props.currencyIndex]
-    // console.log(priceAmount)
-    // const {id} = this.state.productData[0];
-    // console.log(id);
-    console.log(this.state.productData);
+
     return (
       <div className='clothcontainer'>
         <div className='imageContainer'>
           {
-            this.state.gallery.map((singlepic,index)=>{
-              return(
+            this.state.gallery.map((singlepic, index) => {
+              return (
                 <div className='detailsPic'>
                   <img key={index}
-                onClick={()=>this.setState({galleryIndex:index})}
-                  src={singlepic} alt=""/>
+                    onClick={() => this.setState({ galleryIndex: index })}
+                    src={singlepic} alt="" />
                 </div>
               )
             })
           }
         </div>
         <div className='productImage'>
-          <img  src={this.state.gallery[this.state.galleryIndex]}  alt='' ></img>
+          <img src={this.state.gallery[this.state.galleryIndex]} alt='' ></img>
         </div>
         <div className='detailsgroup'>
           <div className="nametext ">{this.state.productData?.brand}</div>
@@ -95,18 +91,16 @@ class ClothDetails extends Component {
                   <div className='attribute'>
                     <div className='sizetext'>
                       {
-                        // ((attribute.id=== "Size")||(attribute.id==="Capacity")) &&
                         <div>{attribute.name}:</div>
 
                       }
-                      
-                      </div>
+
+                    </div>
                     <div className='valuetag'>
 
                       {
                         attribute.type === "swatch" ?
                           attribute.items.map((size, index) => {
-                            // console.log(size.value);
                             return (
                               <div>
                                 {
@@ -114,10 +108,10 @@ class ClothDetails extends Component {
                                     style={{
                                       "color": "#FFFFFF",
                                       "background": `${size.value}`,
-                                      "border": this.state.isActive===size.value ? "1px solid #5ECE7B" : "1px solid #1D1F22"
+                                      "border": this.state.isActive === size.value ? "1px solid #5ECE7B" : "1px solid #1D1F22"
                                     }}
                                     className='colorarea'
-                                    onClick={() => { 
+                                    onClick={() => {
                                       this.setState({ isActive: size.value })
                                     }}
                                   ></div>
@@ -126,19 +120,16 @@ class ClothDetails extends Component {
                             )
                           }) :
                           attribute.items.map((size, index) => {
-                            // console.log(size.value);
                             return (
                               <div>
                                 {
                                   <div key={index}
-                                    style={{
-                                      "background": this.state.isActive === size.value ? "#1D1F22" : "",
-                                      "color": this.state.isActive === size.value && "#FFFFFF",
-                                    }}
-                                    className='valuearea'
-                                    onClick={() => { this.setState({ isActive: size.value }) 
+                                    className={`${this.state.isActive==size.value? 'clothvaluearea':'clothsvaluearea'}`}
                                     
-                                  }}
+                                    onClick={() => {
+                                      this.setState({ isActive: size.value })
+
+                                    }}
                                   >{size.value}</div>
                                 }
                               </div>
@@ -154,15 +145,15 @@ class ClothDetails extends Component {
           <div className='pricetext'>Price: </div>
           <div className='totalprice'>{this.state.prices[this.props.currencyIndex]?.currency?.symbol} {this.state.prices[this.props.currencyIndex]?.amount}</div>
           {
-            (this.state.productData.attributes?.length>0) &&
-            (this.state.productData?.inStock)?
-            <div><button disabled={!this.state.isActive} onClick={()=>this.send()}
-             className='cartbutton'>Add to Cart</button></div>
-            :
-            <div><button disabled className='cartbutton' >Add to Cart</button></div>
-            
+            (this.state.productData.attributes?.length > 0) &&
+              (this.state.productData?.inStock) ?
+              <div><button disabled={!this.state.isActive} onClick={() => this.send()}
+                className='cartbutton'>Add to Cart</button></div>
+              :
+              <div><button disabled className='cartbutton' >Add to Cart</button></div>
+
           }
-          <div className='descriptiontext' dangerouslySetInnerHTML={{__html:this.state.description}}></div>
+          <div className='descriptiontext' dangerouslySetInnerHTML={{ __html: this.state.description }}></div>
         </div>
       </div>
 
@@ -175,4 +166,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default  connect(mapStateToProps, { ADD })(withParams(ClothDetails))
+export default connect(mapStateToProps, { ADD })(withParams(ClothDetails))
