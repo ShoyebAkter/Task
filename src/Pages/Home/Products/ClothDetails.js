@@ -6,7 +6,6 @@ import { withParams } from '../../customhook/HOC';
 import { connect } from 'react-redux';
 import { PRODUCT_QUERY } from '../../queries/productQuery';
 var color;
-
 class ClothDetails extends Component {
   state = {
     productData: [],
@@ -21,12 +20,6 @@ class ClothDetails extends Component {
 
   componentDidMount() {
     this.fetchProduct();
-    const collection=document.getElementsByClassName('colorarea')
-    const myElements = Array.from(collection);
-    myElements.forEach((element) => {
-      console.log(element);
-      element.style.background=color;
-    });
   }
 
   fetchProduct = async () => {
@@ -52,7 +45,6 @@ class ClothDetails extends Component {
   
  
   render() {
-
     return (
       <div className='clothcontainer'>
         <div className='imageContainer'>
@@ -91,16 +83,16 @@ class ClothDetails extends Component {
                       {
                         attribute.type === "swatch" ?
                           attribute.items.map((size, index) => {
-                            color=size.value;
+                            // color=size.value;
+                            // document.documentElement.style.setProperty('--my-variable-name', size.value);
                             return (
                               <div id='myroot'>
                                 {
                                   <div key={index} id={index}
-                                    style={{
-                                      "background":`${size.value}`,
-                                      "border": this.state.isActive === size.value ? "1px solid #5ECE7B" : "1px solid #1D1F22"
-                                    }}
-                                    className='colorarea'
+                                    // style={{
+                                    //   "background":`${size.value}`
+                                    // }}
+                                    className={`${this.state.isActive === size.value?'activecolorarea':'colorarea'}`}
                                     onClick={() => {
                                       this.setState({ isActive: size.value })
                                       
@@ -137,7 +129,8 @@ class ClothDetails extends Component {
           <div className='totalprice'>{this.state.prices[this.props.currencyIndex]?.currency?.symbol}
            {this.state.prices[this.props.currencyIndex]?.amount}</div>
           {
-            (this.state.productData.attributes?.length > 0)?
+            (this.state.productData.attributes?.length>0) &&
+            (this.state.productData?.inStock)?
               <div><button disabled={!this.state.isActive} onClick={() => this.send()}
                 className='cartbutton'>Add to Cart</button></div>
               :

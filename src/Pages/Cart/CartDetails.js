@@ -18,9 +18,6 @@ class CartDetails extends Component {
     colorValue:'',
     colorindex:0,
   }
-  componentDidMount(){
-    this.changeColor(colorvalue)
-  }
 
   add = (ele) => {
     this.props.ADD(ele);
@@ -30,22 +27,13 @@ class CartDetails extends Component {
   }
   deleteOne = (id) => {
     this.props.DLTONE(id)
-  }
-  changeColor(size){
-    console.log('here',size,'vs',colorvalue);
-    document.documentElement.style.setProperty('--background-color',size)
+
   }
   render() {
     let total = 0;
     let quantity = 0;
     let symbol;
     let tax;
-    
-    
-    
-let bg={
-  background:colorvalue
-}
     console.log(this.state.cartDetails)
     return (
       <div className='cartcontainer'>
@@ -76,12 +64,11 @@ let bg={
                                   {
                                     attribute.type === "swatch" ?
                                       attribute.items.map((size, index) => {
-                                          
                                         return (
                                           <div>
                                             {
-                                              <div key={index}
-                                                // style={{"background":`${size.value}`}}
+                                              <div key={index} id={index}
+                                                style={{"--background-color":`${size.value}`}}
                                                 className='colorarea'
                                               ></div>
                                             }
