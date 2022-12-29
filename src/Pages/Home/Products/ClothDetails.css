@@ -1,4 +1,6 @@
-
+#myroot {
+    --my-variable-name: red;
+}
 .clothsvaluearea {
     box-sizing: border-box;
     width: 63px;
@@ -47,6 +49,8 @@
     width: 32px;
     height: 32px;
     cursor: pointer;
+    color: #FFFFFF;
+    background: var(--my-variable-name);
 }
 
 .imageContainer {

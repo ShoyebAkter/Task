@@ -164,7 +164,7 @@ class Header extends Component {
                         }
                         <div className='cartArea' >
                             <button ref={this.cartBox} onClick={() => this.removeScroll()}>
-                                <img src={cartImage} alt="" />
+                                <img  src={cartImage} alt="" />
                                 <span class="icon-button__badge">{this.props.cart.length}</span>
                             </button>
                             <div className={showHideClassName}>

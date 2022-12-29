@@ -5,7 +5,7 @@ import './ClothDetails.css'
 import { withParams } from '../../customhook/HOC';
 import { connect } from 'react-redux';
 import { PRODUCT_QUERY } from '../../queries/productQuery';
-
+var color;
 
 class ClothDetails extends Component {
   state = {
@@ -21,15 +21,16 @@ class ClothDetails extends Component {
 
   componentDidMount() {
     this.fetchProduct();
+    const collection=document.getElementsByClassName('colorarea')
+    const myElements = Array.from(collection);
+    myElements.forEach((element) => {
+      console.log(element);
+      element.style.background=color;
+    });
   }
 
   fetchProduct = async () => {
     const productId = this.props.params.id;
-    // const priceAmount=this.state.productData.prices[this.props.currencyIndex].amount;
-    //  console.log(priceAmount);
-
-
-
     await fetch('http://localhost:4000/', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -39,27 +40,17 @@ class ClothDetails extends Component {
       .then(result => {
         console.log(result)
         this.setState({ productData: result.data.product });
-        const regex = /(<([^>]+)>)/ig
         const newString = result.data.product.description
-
         this.setState({ description: newString })
-        // const parser = new DOMParser()
-        // const virtualDoc = parser.parseFromString(newString, 'text/html')
-        // console.log(virtualDoc);
-        // this.setState({description:virtualDoc})
         this.setState({ gallery: result.data.product.gallery })
         this.setState({ prices: result.data.product.prices })
-        // console.log(this.state.productData)
-        // console.log(this.state.categoryName)
       })
-
-    // 
-    // this.setState({description:newString});
   }
   send = () => {
     this.props.ADD(this.state.productData, this.state.isActive)
   }
-
+  
+ 
   render() {
 
     return (
@@ -100,14 +91,13 @@ class ClothDetails extends Component {
                       {
                         attribute.type === "swatch" ?
                           attribute.items.map((size, index) => {
-                           
+                            color=size.value;
                             return (
-                              <div>
+                              <div id='myroot'>
                                 {
-                                  <div key={index}
+                                  <div key={index} id={index}
                                     style={{
-                                      "color": "#FFFFFF",
-                                      "background": `${size.value}`,
+                                      "background":`${size.value}`,
                                       "border": this.state.isActive === size.value ? "1px solid #5ECE7B" : "1px solid #1D1F22"
                                     }}
                                     className='colorarea'
@@ -161,6 +151,7 @@ class ClothDetails extends Component {
     )
   }
 }
+
 const mapStateToProps = (state) => {
   return {
     currencyIndex: state.cartreducer.priceIndex

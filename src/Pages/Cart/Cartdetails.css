@@ -23,6 +23,10 @@ font-size: 30px;
 line-height: 27px;
 color: #1D1F22;
 } */
+:root{
+    --background-color:"white";
+}
+
 .cartcontainer {
     margin-inline: 100px;
     margin-bottom: 200px;
@@ -145,7 +149,8 @@ color: #1D1F22;
     width: 32px;
     height: 32px;
     cursor: pointer;
-    color:#FFFFFF 
+    color:#FFFFFF;
+    background: var(--background-color);
 }
 
 .buttongroup {

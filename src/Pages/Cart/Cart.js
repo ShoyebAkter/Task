@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux/es/exports'
 
 import { REMOVE } from '../../redux/action/action'
@@ -16,7 +16,7 @@ class Cart extends Component {
         currencyIndex: null,
         totalPrice: 0,
         isActive: false,
-        attribute: ""
+        attribute: "",
     }
 
 
@@ -108,7 +108,9 @@ class Cart extends Component {
                                                 </div>
                                             </div>
                                             
-                                                <img style={{"height":"100%","width":"100px","marginBlock":"auto"}}  src={element.gallery[0]} alt="" />
+                                                <div >
+                                                <img className='cartimage' src={element.gallery[0]} alt="" />
+                                                </div>
                                             
                                         </div>
                                     </div>
@@ -123,7 +125,8 @@ class Cart extends Component {
                         <div>{symbol} {total.toFixed(2)} </div>
                     </div>
                     <div className='buttoncontainer'>
-                        <NavLink className='bagbutton' to={`/cart`}>View Bag</NavLink>
+                        <Link className='bagbutton'
+                         to={`/cart`}>View Bag</Link>
                         <div onClick={() => this.delete()} className='checkoutbutton' >Checkout</div>
                     </div>
                 </div>
