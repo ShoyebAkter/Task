@@ -5,7 +5,13 @@ import './ClothDetails.css'
 import { withParams } from '../../customhook/HOC';
 import { connect } from 'react-redux';
 import { PRODUCT_QUERY } from '../../queries/productQuery';
-var color;
+import styled from 'styled-components';
+const Colorbox=styled.div`
+background: ${props=>props.bg};
+box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+`
 class ClothDetails extends Component {
   state = {
     productData: [],
@@ -83,21 +89,17 @@ class ClothDetails extends Component {
                       {
                         attribute.type === "swatch" ?
                           attribute.items.map((size, index) => {
-                            // color=size.value;
-                            // document.documentElement.style.setProperty('--my-variable-name', size.value);
                             return (
                               <div id='myroot'>
                                 {
-                                  <div key={index} id={index}
-                                    // style={{
-                                    //   "background":`${size.value}`
-                                    // }}
+                                  <Colorbox  bg={size.value} key={index}
+                                    
                                     className={`${this.state.isActive === size.value?'activecolorarea':'colorarea'}`}
                                     onClick={() => {
                                       this.setState({ isActive: size.value })
                                       
                                     }}
-                                  ></div>
+                                  ></Colorbox >
                                 }
                               </div>
                             )

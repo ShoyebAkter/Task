@@ -62,7 +62,7 @@ color: #1D1F22;
 }
 
 .details {
-    width: 950px;
+    width: 750px;
 }
 
 .detailscontainer {
@@ -144,14 +144,6 @@ color: #1D1F22;
     letter-spacing: 0.05em;
 }
 
-.colorarea {
-    box-sizing: border-box;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    color:#FFFFFF;
-    background: var(--background-color);
-}
 
 .buttongroup {
     width: 45px;

@@ -6,17 +6,23 @@ import './Cartdetails.css'
 import plus from '../../assets/plus-square2.png'
 import minus from '../../assets/minus-square2.png'
 import { ADD, REMOVE, DLTONE } from '../../redux/action/action'
+import styled from 'styled-components';
+const Colorbox = styled.div`
+background: ${props => props.bg};
+box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+    border:1px solid #1D1F22 ;
+`
 
-let colorvalue;
-let checkColor=getComputedStyle(document.documentElement).getPropertyValue('--background-color');
 class CartDetails extends Component {
   state = {
     cartDetails: [],
     currencyIndex: null,
     isActive: null,
     total: 0,
-    colorValue:'',
-    colorindex:0,
+    colorValue: '',
+    colorindex: 0,
   }
 
   add = (ele) => {
@@ -56,7 +62,7 @@ class CartDetails extends Component {
                       <div >
                         {
                           product.attributes.map((attribute => {
-                            
+
                             return (
                               <div>
                                 <div className='sizetext'>{attribute.name}:</div>
@@ -67,10 +73,9 @@ class CartDetails extends Component {
                                         return (
                                           <div>
                                             {
-                                              <div key={index} id={index}
-                                                style={{"--background-color":`${size.value}`}}
-                                                className='colorarea'
-                                              ></div>
+                                              <Colorbox bg={size.value} key={index} id={index}
+                                               
+                                              ></Colorbox>
                                             }
                                           </div>
                                         )
